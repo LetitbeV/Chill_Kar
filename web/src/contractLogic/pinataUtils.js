@@ -63,7 +63,6 @@ export const uploadJsonToIPFS = async (jsonData) => {
 // Function to get JSON data from Pinata
 export const getFromPinata = async (ipfsHash) => {
   try {
-    console.log("hash: ", ipfsHash);
     const response = await fetch(
       `https://gateway.pinata.cloud/ipfs/${ipfsHash}`,
       { method: "GET" }
@@ -78,7 +77,6 @@ export const getFromPinata = async (ipfsHash) => {
 // Function to get image from Pinata
 export const getImageFromPinata = async (ipfsHash) => {
   try {
-    console.log("image hash: ", ipfsHash);
     const imageUrl = `https://gateway.pinata.cloud/ipfs/${ipfsHash}`;
     return imageUrl; // Returns the URL to the image that can be used in <img> tags
   } catch (error) {
