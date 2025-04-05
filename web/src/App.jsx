@@ -2,15 +2,13 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
-import SearchBar from "./components/SearchBar.jsx";
-import moviesData from './SampleData/MoviesData.json'
-
 import Homepage from "./pages/HomePage.jsx";
 import Footer from "./components/Footer.jsx";
 import MovieDetailsPage from "./pages/MovieDetailsPage.jsx";
 import ListEvents from "./pages/ListEvents.jsx";
 import PostEvent from './pages/PostEvent.jsx'
 import EventsAnalyticsPage from "./pages/EventAnalyticsPage.jsx";
+import EventDetailsPage from "./pages/EventDetailsPage.jsx";
 
 const Layout = () => {
   return (
@@ -21,7 +19,7 @@ const Layout = () => {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
-          <Route path="/events/:eventId" element={<MovieDetailsPage />} />
+          <Route path="/events/:owner/:eventTime" element={<EventDetailsPage />} />
           <Route path="/Movies" element={<ListEvents eventType={`Movies`} />} />
           <Route path="/Sports" element={<ListEvents eventType={`Sports`} />} />
           <Route path="/Concerts" element={<ListEvents eventType={`Concert`} />} />
