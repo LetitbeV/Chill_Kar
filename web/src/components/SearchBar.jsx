@@ -29,7 +29,7 @@ const SearchBar = () => {
     }, [searchQuery])
 
     return (
-        <div className="mt-15 mb-15 max-w-2xl relative">
+        <div className="mt-15 mb-15 w-xl relative">
             <div className="bg-white flex w-full items-center flex-1 relative rounded-2xl">
                 <Search className="absolute left-3 text-gray-400" size={18} />
                 <input
@@ -40,7 +40,7 @@ const SearchBar = () => {
                         setShowResults(true)
                     }}
                     onFocus={() => setShowResults(true)}
-                    placeholder="Search for Movies, Events, Plays, Sports and Activities"
+                    placeholder="Search for Events "
                     className="pl-10 pr-4 py-2 rounded-2xl w-full border border-gray-300 focus:outline-none focus:ring-1 focus:ring-yellow-500"
                 />
             </div>
@@ -53,9 +53,9 @@ const SearchBar = () => {
                             key={result.id}
                             className="p-3 hover:bg-yellow-50 cursor-pointer border-b last:border-b-0"
                             onClick={() => {
-                                // Handle click - navigate to event details or category
-                                setShowResults(false)
-                                setSearchQuery('')
+                                navigate(`/movies/${result.id}`);
+                                setShowResults(false);
+                                setSearchQuery('');
                             }}
                         >
                             <div className="flex items-start gap-3">

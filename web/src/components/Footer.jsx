@@ -40,9 +40,9 @@ const Footer = () => {
             {/* Main Footer Section */}
             <div className="container mx-auto px-4">
                 {/* Top Section with Feedback */}
-                <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-10">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-10 justify-items-center text-center">
                     {/* Newsletter/Feedback Section */}
-                    <div className="lg:col-span-1">
+                    <div className="lg:col-span-1 w-full max-w-xs">
                         <h3 className="text-xl font-bold mb-4">Always Feel Connected</h3>
                         <div className="relative">
                             <input
@@ -59,7 +59,7 @@ const Footer = () => {
                     {/* Collections Links */}
                     <div className="lg:col-span-1">
                         <h3 className="text-lg font-bold mb-4">Collections</h3>
-                        <ul className="space-y-2">
+                        <ul className="space-y-2 text-left">
                             {EventCollections.map((item, index) => (
                                 <li key={`collection-${index}`}>
                                     <a
@@ -76,7 +76,7 @@ const Footer = () => {
                     {/* My Account Links */}
                     <div className="lg:col-span-1">
                         <h3 className="text-lg font-bold mb-4">My Account</h3>
-                        <ul className="space-y-2">
+                        <ul className="space-y-2 text-left">
                             {myAccountLinks.map((item, index) => (
                                 <li key={`account-${index}`}>
                                     <a
@@ -94,17 +94,17 @@ const Footer = () => {
                     {/* Social Media Links */}
                     <div className="lg:col-span-1">
                         <h3 className="text-lg font-bold mb-4">Join Us</h3>
-                        <ul className="space-y-2">
-                        {socialLinks.map((item, index) => (
-                            <li key={`social-${index}`}>
-                                <a
-                                    href={item.link}
-                                    className="text-gray-400 hover:text-white text-sm transition duration-300"
-                                >
-                                    {item.name}
-                                </a>
-                            </li>
-                        ))}
+                        <ul className="space-y-2 text-left">
+                            {socialLinks.map((item, index) => (
+                                <li key={`social-${index}`}>
+                                    <a
+                                        href={item.link}
+                                        className="text-gray-400 hover:text-white text-sm transition duration-300"
+                                    >
+                                        {item.name}
+                                    </a>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </div>

@@ -30,7 +30,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo and search */}
-          <div className="flex items-center gap-4 flex-1">
+          <div className="flex items-center justify-between gap-4 flex-1 h-15 max-w-8/12">
             {/* Logo */}
             <NavLink to="/">
               <div className="flex items-center">

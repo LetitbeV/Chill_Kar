@@ -26,14 +26,14 @@ const Layout = () => {
           <Route path="/Movies" element={<ListEvents eventType={`Movies`} />} />
           <Route path="/Sports" element={<ListEvents eventType={`Sports`} />} />
           <Route path="/Concerts" element={<ListEvents eventType={`Concert`} />} />
-          <Route path="/Events" element={<ListEvents  />} />
-          <Route path ="/events-analytics" element={<EventsAnalyticsPage/>}/>
+          <Route path="/Events" element={<ListEvents />} />
+          <Route path="/events-analytics" element={<EventsAnalyticsPage />} />
           <Route path="/PostEvent" element={<PostEvent />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
         </Routes>
+      <Footer />
       </main>
-      <Footer/>
     </>
   );
 };

@@ -5,6 +5,8 @@ import defaultPoster from '../../public/images/anime/anime4.png'; // Default pos
 const MovieDetails = ({ movie }) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
+  console.log(movie);
+
   useEffect(() => {
     const handleScroll = () => {
       // Show fixed booking button when scrolled past hero section
@@ -46,7 +48,7 @@ const MovieDetails = ({ movie }) => {
           <div className="hidden md:block md:w-64 relative mr-8 mb-6">
             <div className="rounded-lg overflow-hidden shadow-xl">
               <img
-                src={movie.image}
+                src={movie.poster}
                 alt={movie.title}
                 className="w-full h-auto"
               />

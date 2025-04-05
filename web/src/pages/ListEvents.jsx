@@ -11,7 +11,7 @@ const ListEvents = ({ eventType }) => {
 
   if (!filteredEvents || filteredEvents.length === 0) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-yellow-50 to-yellow-100 py-8">
+      <div className="min-h-screen bg-gradient-to-b from-yellow-50 to-yellow-100 py-8 pb-50">
         <div className="container mx-auto px-4 h-[70vh] flex flex-col items-center justify-center">
           <div className="bg-white p-8 rounded-2xl shadow-lg text-center max-w-md">
             <FileWarning className="w-16 h-16 text-yellow-500 mx-auto mb-4" />
@@ -35,7 +35,7 @@ const ListEvents = ({ eventType }) => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-yellow-50 to-yellow-100 py-8">
-      <div className="pl-10 pr-10 rounded-4xl bg-white container mx-auto px-4">
+      <div className="pb-20 pl-10 pr-10 rounded-4xl bg-white container mx-auto px-4">
         {/* Header Section */}
         <div className="mb-8 text-center">
           <h1 className="text-5xl font-bold text-gray-800 mb-3 relative">
@@ -50,7 +50,7 @@ const ListEvents = ({ eventType }) => {
         </div>
 
         {/* Events Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 p-4 bg-white/50 backdrop-blur-sm rounded-2xl shadow-lg">
+        <div className="pb-10 pt-5 flex flex-wrap justify-center gap-8 p-4 bg-white/50 backdrop-blur-sm rounded-2xl shadow-lg">
           {filteredEvents.map((event, index) => (
             <div
               key={event.id || index}

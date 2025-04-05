@@ -10,7 +10,7 @@ const Homepage = () => {
   const { recommendedMovies, TrendingGenres } = MoviesData;
 
   return (
-    <div className="mr-auto ml-auto max-w-11/12 rounded-4xl bg-white pb-8 pt-6 mt-4 px-4">
+    <div className="mr-auto ml-auto mb-20 max-w-11/12 rounded-4xl bg-white pb-8 pt-2 mt-10 px-4">
       {/* Recommended Movies Section */}
       <ScrollableSection
         title="Recommended Movies"
