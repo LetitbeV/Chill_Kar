@@ -87,7 +87,9 @@ const Navbar = () => {
               onClick={handleConnectWallet}
               className="bg-yellow-500 cursor-pointer text-white rounded py-1 px-4 hover:bg-yellow-600 transition-colors"
             >
-              {currentAccount.substring(0,6)+"..." || "Connect Wallet"}
+              {currentAccount
+                ? currentAccount.substring(0, 6) + "..."
+                : "Connect Wallet"}
             </button>
             {/* Hamburger Menu */}
             <button

@@ -29,3 +29,25 @@ export const uploadPicture = async (imageFile) => {
     throw error;
   }
 };
+
+export const getFromPinata = async (ipfsHash) => {
+  try {
+    console.log("ipfsHash: ", ipfsHash);
+    const response = await fetch(
+      `https://gateway.pinata.cloud/ipfs/${ipfsHash}`,
+      { method: "GET" }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching from Pinata:", error);
+    throw error;
+  }
+};
+
+export const saveMetaData = async(Metadata) => {
+  try {
+    
+  } catch (error) {
+    
+  }
+}

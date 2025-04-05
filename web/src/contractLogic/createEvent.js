@@ -4,11 +4,6 @@ import { ethers } from "ethers";
 const createEvent = async (eventData) => {
   const { ethereum } = window;
 
-  if (!ethereum) {
-    console.log("Ethereum object not found");
-    throw new Error("MetaMask not detected");
-  }
-
   console.log("data: ", eventData);
 
   if (ethereum) {
@@ -52,6 +47,7 @@ const createEvent = async (eventData) => {
     }
   } else {
     console.log("Ethereum object not found");
+    throw new Error("MetaMask not detected");
   }
 };
 
