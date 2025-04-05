@@ -4,7 +4,6 @@ import android.net.Uri
 import com.sks225.chillkar.model.Event
 import com.sks225.chillkar.model.EventCategory
 import com.sks225.chillkar.model.TicketInfo
-import com.sks225.chillkar.model.TicketType
 
 val sampleEvents = listOf(
     Event(
@@ -14,8 +13,8 @@ val sampleEvents = listOf(
         location = "Central Park, NYC",
         description = "Join us for an unforgettable night of live music under the stars!",
         category = EventCategory.CONCERTS,
-        generalTicket = TicketInfo(TicketType.GENERAL, price = 50, sold = 120, total = 200),
-        vipTicket = TicketInfo(TicketType.VIP, price = 120, sold = 30, total = 50)
+        generalTicket = TicketInfo(price = 50, sold = 120, total = 200),
+        vipTicket = TicketInfo(price = 120, sold = 30, total = 50)
     ),
     Event(
         name = "Championship Finals",
@@ -24,8 +23,8 @@ val sampleEvents = listOf(
         location = "Madison Square Garden, NYC",
         description = "Watch the top teams battle for the championship title!",
         category = EventCategory.SPORTS,
-        generalTicket = TicketInfo(TicketType.GENERAL, price = 75, sold = 300, total = 500),
-        vipTicket = TicketInfo(TicketType.VIP, price = 200, sold = 80, total = 100)
+        generalTicket = TicketInfo(price = 75, sold = 300, total = 500),
+        vipTicket = TicketInfo(price = 200, sold = 80, total = 100)
     ),
     Event(
         name = "Premiere Night: The Lost Galaxy",
@@ -34,8 +33,8 @@ val sampleEvents = listOf(
         location = "Grand Cinema Hall, LA",
         description = "Be the first to experience the sci-fi adventure of the year!",
         category = EventCategory.MOVIES,
-        generalTicket = TicketInfo(TicketType.GENERAL, price = 20, sold = 180, total = 200),
-        vipTicket = TicketInfo(TicketType.VIP, price = 40, sold = 15, total = 20)
+        generalTicket = TicketInfo(price = 20, sold = 180, total = 200),
+        vipTicket = TicketInfo(price = 40, sold = 15, total = 20)
     ),
     Event(
         name = "Food Carnival 2025",
@@ -44,8 +43,8 @@ val sampleEvents = listOf(
         location = "Downtown Square, Chicago",
         description = "Taste cuisines from around the world and enjoy live cooking shows.",
         category = EventCategory.OTHERS,
-        generalTicket = TicketInfo(TicketType.GENERAL, price = 10, sold = 500, total = 1000),
-        vipTicket = TicketInfo(TicketType.VIP, price = 25, sold = 100, total = 150)
+        generalTicket = TicketInfo(price = 10, sold = 500, total = 1000),
+        vipTicket = TicketInfo(price = 25, sold = 100, total = 150)
     ),
     Event(
         name = "Indie Rock Night",
@@ -54,7 +53,7 @@ val sampleEvents = listOf(
         location = "Echo Arena, Seattle",
         description = "Experience the raw energy of the best indie rock bands live!",
         category = EventCategory.CONCERTS,
-        generalTicket = TicketInfo(TicketType.GENERAL, price = 30, sold = 220, total = 300),
-        vipTicket = TicketInfo(TicketType.VIP, price = 60, sold = 50, total = 60)
+        generalTicket = TicketInfo(price = 30, sold = 220, total = 300),
+        vipTicket = TicketInfo(price = 60, sold = 50, total = 60)
     )
 )
