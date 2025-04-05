@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Star, Share, X } from 'lucide-react';
 import defaultPoster from '/images/anime/anime4.png'; // Default poster image
+import NFTCard from './NFTCard';
+import nft from '../SampleData/NFTData.json'
 
 const MovieDetails = ({ movie }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -8,6 +10,7 @@ const MovieDetails = ({ movie }) => {
   const [bookingData, setBookingData] = useState({
     age: '',
     gender: '',
+    isVIP: false,
     region: '',
     eventCategory: movie?.eventType || 'Other Events',
     timestamp: new Date().toISOString()
@@ -59,7 +62,7 @@ const MovieDetails = ({ movie }) => {
                       type="number"
                       className="w-full p-2 border rounded"
                       value={bookingData.age}
-                      onChange={(e) => setBookingData({...bookingData, age: e.target.value})}
+                      onChange={(e) => setBookingData({ ...bookingData, age: e.target.value })}
                       required
                     />
                   </div>
@@ -68,7 +71,7 @@ const MovieDetails = ({ movie }) => {
                     <select
                       className="w-full p-2 border rounded"
                       value={bookingData.gender}
-                      onChange={(e) => setBookingData({...bookingData, gender: e.target.value})}
+                      onChange={(e) => setBookingData({ ...bookingData, gender: e.target.value })}
                       required
                     >
                       <option value="">Select gender</option>
@@ -81,7 +84,7 @@ const MovieDetails = ({ movie }) => {
                     <select
                       className="w-full p-2 border rounded"
                       value={bookingData.region}
-                      onChange={(e) => setBookingData({...bookingData, region: e.target.value})}
+                      onChange={(e) => setBookingData({ ...bookingData, region: e.target.value })}
                       required
                     >
                       <option value="">Select region</option>
@@ -89,6 +92,18 @@ const MovieDetails = ({ movie }) => {
                         <option key={region} value={region}>{region}</option>
                       ))}
                     </select>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      id="vipTicket"
+                      checked={bookingData.isVIP}
+                      onChange={(e) => setBookingData({ ...bookingData, isVIP: e.target.checked })}
+                      className="h-4 w-4 text-yellow-500 border-gray-300 rounded focus:ring-yellow-500"
+                    />
+                    <label htmlFor="vipTicket" className="text-sm font-medium text-gray-700">
+                      Book VIP tickets
+                    </label>
                   </div>
                   <button
                     type="submit"
@@ -107,7 +122,7 @@ const MovieDetails = ({ movie }) => {
       {isScrolled && (
         <div className="fixed top-0 left-0 right-0 bg-white shadow-md z-50 py-3 px-4 flex justify-between items-center">
           <h2 className="text-lg font-bold">{movie.title}</h2>
-          <button 
+          <button
             onClick={() => setShowBookingModal(true)}
             className="bg-yellow-500 hover:bg-yellow-600 text-black cursor-pointer font-bold py-2 px-6 rounded-md"
           >
@@ -157,7 +172,7 @@ const MovieDetails = ({ movie }) => {
             </div>
 
             {/* Book Tickets Button */}
-            <button 
+            <button
               onClick={() => setShowBookingModal(true)}
               className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-md cursor-pointer"
             >
@@ -173,6 +188,12 @@ const MovieDetails = ({ movie }) => {
         <p className="text-gray-700 leading-relaxed mb-8">
           {movie.description}
         </p>
+
+        <h2 className='text-3xl font-bold mb-4 underline decoration-yellow-500 '>Event NFTs</h2>
+        <div className="NFTcards flex min-w-7/12 justify-around">
+          <NFTCard data={nft.nfts[2]} isVIP={true} />
+          <NFTCard data={nft.nfts[4]}/>
+        </div>
 
       </div>
 

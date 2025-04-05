@@ -1,0 +1,64 @@
+{
+  "nfts": [
+    {
+      "image": "https://images.unsplash.com/photo-1634973357973-f2ed2657db3c?w=800",
+      "price": 0.85,
+      "remaining": 3,
+      "hash": "0xd4e8f1c2b3a6d5e9f7c8b2a1d4e8f1c2"
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1646953157719-c89617d33826?w=800",
+      "price": 1.2,
+      "remaining": 5,
+      "hash": "0xe9f7c8b2a1d4e8f1c2b3a6d5e9f7c8b2"
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=800",
+      "price": 2.5,
+      "remaining": 1,
+      "hash": "0xb2a1d4e8f1c2b3a6d5e9f7c8b2a1d4e8"
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800",
+      "price": 0.45,
+      "remaining": 8,
+      "hash": "0xc2b3a6d5e9f7c8b2a1d4e8f1c2b3a6d5"
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1642427749670-f20e2e76ed8c?w=800",
+      "price": 3.75,
+      "remaining": 2,
+      "hash": "0xa1d4e8f1c2b3a6d5e9f7c8b2a1d4e8f1"
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1634973357978-c8b7930f656f?w=800",
+      "price": 1.8,
+      "remaining": 4,
+      "hash": "0xf1c2b3a6d5e9f7c8b2a1d4e8f1c2b3a6"
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1645171090243-88893f0f0b3f?w=800",
+      "price": 0.95,
+      "remaining": 6,
+      "hash": "0x8b2a1d4e8f1c2b3a6d5e9f7c8b2a1d4e"
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1636953056323-9c09fdd74fa6?w=800",
+      "price": 5.0,
+      "remaining": 1,
+      "hash": "0x6d5e9f7c8b2a1d4e8f1c2b3a6d5e9f7c"
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1644923876964-cad81d48a28f?w=800",
+      "price": 1.5,
+      "remaining": 7,
+      "hash": "0x4e8f1c2b3a6d5e9f7c8b2a1d4e8f1c2b"
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1633101585272-cc68eb6ddd6c?w=800",
+      "price": 2.8,
+      "remaining": 3,
+      "hash": "0x2b3a6d5e9f7c8b2a1d4e8f1c2b3a6d5e"
+    }
+  ]
+}
