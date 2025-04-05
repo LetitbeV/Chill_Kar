@@ -5,6 +5,7 @@ import defaultPoster from '../../public/images/gaming/gaming1.webp';; // Default
 import defaultBackdrop from '../../public/images/latest-drops/asteroid.gif'; // Default backdrop image
 
 import allEventsData from '../SampleData/AllEventsData.json'
+import recommendedMoviesData from '../SampleData/MoviesData.json'
 
 const MovieDetailsPage = () => {
     const { movieId } = useParams();
@@ -17,7 +18,7 @@ const MovieDetailsPage = () => {
                 setLoading(true);
                 
                 // Find the event with matching ID from allEventsData
-                const foundMovie = allEventsData.Events.find(
+                const foundMovie = recommendedMoviesData.recommendedMovies.find(
                     event => event.id === parseInt(movieId)
                 );
 

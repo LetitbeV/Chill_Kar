@@ -21,7 +21,7 @@ const Navbar = () => {
   const handleSignUp = () => {
     navigate('/signup')
   }
-  
+
   const handleConnectWallet = () => {
     // Logic to connect wallet goes here
     console.log('Connect Wallet clicked');
@@ -56,8 +56,8 @@ const Navbar = () => {
             <NavLink to="/">
               <div className="flex items-center">
                 <div className="text-xl font-bold">
-                  <span className="text-yellow-600 bg-yellow-100 px-1 rounded text-2xl">Chill</span>
-                  <span className="text-gray-800 text-xl">Kar</span>
+                  <span className="text-yellow-600 bg-yellow-100 px-1 mx-1 rounded text-3xl">Chill</span>
+                  <span className="text-gray-800 text-3xl">Kar</span>
                 </div>
               </div>
             </NavLink>

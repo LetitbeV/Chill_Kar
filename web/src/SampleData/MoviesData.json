@@ -6,7 +6,8 @@
             "poster": "../../public/images/anime/anime1.jpeg",
             "rating": 6.7,
             "votes": "8.6K",
-            "genres": ["Action", "Drama"]
+            "genres": ["Action", "Drama"],
+            "description": "A gripping action-drama about a young man caught in the turmoil of gang wars and his journey to seek redemption."
         },
         {
             "id": 2,
@@ -14,7 +15,8 @@
             "poster": "../../public/images/anime/anime2.gif",
             "rating": 8.1,
             "votes": "5.1K",
-            "genres": ["Action", "Animation", "Comedy"]
+            "genres": ["Action", "Animation", "Comedy"],
+            "description": "A humorous and action-packed adventure where players inside the Minecraft world face a new and dangerous challenge."
         },
         {
             "id": 3,
@@ -22,7 +24,8 @@
             "poster": "../../public/images/anime/anime7.gif",
             "rating": 9.0,
             "votes": "34.7K",
-            "genres": ["Action", "Drama", "Historical"]
+            "genres": ["Action", "Drama", "Historical"],
+            "description": "Set in a historical backdrop, this action-drama follows the story of a fearless warrior battling for his kingdom."
         },
         {
             "id": 4,
@@ -30,7 +33,8 @@
             "poster": "../../public/images/anime/anime4.png",
             "rating": 8.1,
             "votes": "42.1K",
-            "genres": ["Action", "Crime", "Thriller"]
+            "genres": ["Action", "Crime", "Thriller"],
+            "description": "A high-octane crime thriller featuring intense action sequences and a complex plot of betrayal and survival."
         },
         {
             "id": 5,
@@ -38,7 +42,8 @@
             "poster": "../../public/images/anime/anime5.gif",
             "rating": 8.4,
             "votes": "5.0K",
-            "genres": ["Action", "Thriller"]
+            "genres": ["Action", "Thriller"],
+            "description": "An intense political thriller about a diplomat caught in a dangerous game of international espionage."
         },
         {
             "id": 6,
@@ -46,7 +51,8 @@
             "poster": "../../public/images/anime/anime6.webp",
             "rating": 7.8,
             "votes": "12.3K",
-            "genres": ["Action", "Drama"]
+            "genres": ["Action", "Drama"],
+            "description": "A powerful drama revolving around a former fighter's comeback, struggling to reconcile his past with his future."
         },
         {
             "id": 7,
@@ -54,7 +60,8 @@
             "poster": "../../public/images/anime/anime3.jpeg",
             "rating": 8.0,
             "votes": "9.0K",
-            "genres": ["Action", "Adventure", "Sci-Fi"]
+            "genres": ["Action", "Adventure", "Sci-Fi"],
+            "description": "A dystopian action-adventure where the oppressed must fight in a deadly game for survival and revolution."
         },
         {
             "id": 8,
@@ -62,7 +69,8 @@
             "poster": "../../public/images/art/art1.jpeg",
             "rating": 8.8,
             "votes": "23.5K",
-            "genres": ["Sci-Fi", "Action", "Thriller"]
+            "genres": ["Sci-Fi", "Action", "Thriller"],
+            "description": "A mind-bending sci-fi thriller that explores the concept of dreams within dreams and the consequences of manipulation of the subconscious."
         },
         {
             "id": 9,
@@ -70,7 +78,8 @@
             "poster": "../../public/images/art/art2.jpeg",
             "rating": 9.0,
             "votes": "45.2K",
-            "genres": ["Action", "Crime", "Drama"]
+            "genres": ["Action", "Crime", "Drama"],
+            "description": "Batman faces his greatest nemesis, the Joker, in this dark and thrilling crime drama that raises questions about justice and morality."
         },
         {
             "id": 10,
@@ -78,7 +87,8 @@
             "poster": "../../public/images/art/art3.jpeg",
             "rating": 8.9,
             "votes": "18.7K",
-            "genres": ["Biography", "Drama", "History"]
+            "genres": ["Biography", "Drama", "History"],
+            "description": "A historical drama about the man who created the atomic bomb and the moral dilemmas he faced during its development."
         },
         {
             "id": 11,
@@ -86,7 +96,8 @@
             "poster": "../../public/images/art/art4.webp",
             "rating": 8.5,
             "votes": "32.1K",
-            "genres": ["Sci-Fi", "Adventure", "Fantasy"]
+            "genres": ["Sci-Fi", "Adventure", "Fantasy"],
+            "description": "A visually stunning sci-fi adventure where the journey to a new world reveals unexpected challenges and revelations."
         },
         {
             "id": 12,
@@ -94,7 +105,8 @@
             "poster": "../../public/images/cars/cars1.gif",
             "rating": 8.7,
             "votes": "28.3K",
-            "genres": ["Sci-Fi", "Adventure", "Drama"]
+            "genres": ["Sci-Fi", "Adventure", "Drama"],
+            "description": "A sweeping, epic adaptation of Frank Herbert's science fiction masterpiece that explores the struggle for power in a desert world."
         },
         {
             "id": 13,
@@ -102,7 +114,8 @@
             "poster": "../../public/images/cars/cars2.webp",
             "rating": 8.3,
             "votes": "25.9K",
-            "genres": ["Action", "Drama"]
+            "genres": ["Action", "Drama"],
+            "description": "A thrilling action-packed sequel where Maverick returns to train the next generation of elite pilots while confronting his past."
         },
         {
             "id": 14,
@@ -110,7 +123,8 @@
             "poster": "../../public/images/cars/cars3.jpeg",
             "rating": 8.7,
             "votes": "39.4K",
-            "genres": ["Sci-Fi", "Action"]
+            "genres": ["Sci-Fi", "Action"],
+            "description": "A groundbreaking sci-fi action film that questions the nature of reality as a computer hacker discovers the truth about a simulated world."
         },
         {
             "id": 15,
@@ -118,7 +132,8 @@
             "poster": "../../public/images/cars/cars4.jpeg",
             "rating": 8.9,
             "votes": "41.2K",
-            "genres": ["Sci-Fi", "Adventure", "Drama"]
+            "genres": ["Sci-Fi", "Adventure", "Drama"],
+            "description": "An epic space adventure exploring love, time, and the survival of humanity as astronauts venture beyond the stars."
         },
         {
             "id": 16,
@@ -126,7 +141,8 @@
             "poster": "/images/anime/anime1.jpeg",
             "rating": 8.6,
             "votes": "35.8K",
-            "genres": ["Sci-Fi", "Drama", "Mystery"]
+            "genres": ["Sci-Fi", "Drama", "Mystery"],
+            "description": "A visually mesmerizing sequel that continues the search for humanity in a dystopian future filled with secrets and existential questions."
         },
         {
             "id": 17,
@@ -134,7 +150,8 @@
             "poster": "../../public/images/anime/anime2.gif",
             "rating": 8.4,
             "votes": "27.3K",
-            "genres": ["Comedy", "Adventure", "Drama"]
+            "genres": ["Comedy", "Adventure", "Drama"],
+            "description": "A quirky comedy-adventure set in a luxurious hotel, filled with eccentric characters and chaotic yet charming stories."
         },
         {
             "id": 18,
@@ -142,7 +159,8 @@
             "poster": "../../public/images/anime/anime3.jpeg",
             "rating": 8.8,
             "votes": "38.9K",
-            "genres": ["Action", "Adventure", "Sci-Fi"]
+            "genres": ["Action", "Adventure", "Sci-Fi"],
+            "description": "A post-apocalyptic action-thriller where a lone warrior teams up with a group of rebels to escape a tyrannical warlord."
         },
         {
             "id": 19,
@@ -150,7 +168,8 @@
             "poster": "../../public/images/anime/anime4.png",
             "rating": 8.9,
             "votes": "31.2K",
-            "genres": ["Action", "Adventure", "Comedy"]
+            "genres": ["Action", "Adventure", "Comedy"],
+            "description": "A mind-bending multiverse adventure where an ordinary woman discovers she is the key to saving countless realities."
         },
         {
             "id": 20,
@@ -158,7 +177,8 @@
             "poster": "../../public/images/anime/anime5.gif",
             "rating": 8.5,
             "votes": "29.7K",
-            "genres": ["Sci-Fi", "Drama", "Mystery"]
+            "genres": ["Sci-Fi", "Drama", "Mystery"],
+            "description": "A thought-provoking sci-fi mystery about a linguist trying to communicate with extraterrestrial beings to prevent global disaster."
         },
         {
             "id": 21,
@@ -166,7 +186,8 @@
             "poster": "../../public/images/anime/anime6.webp",
             "rating": 9.2,
             "votes": "44.5K",
-            "genres": ["Drama", "Thriller"]
+            "genres": ["Drama", "Thriller"],
+            "description": "A dark satire about class disparity, following a poor family who infiltrates a wealthy household, leading to unforeseen consequences."
         },
         {
             "id": 22,
@@ -174,7 +195,8 @@
             "poster": "../../public/images/anime/anime7.gif",
             "rating": 8.2,
             "votes": "21.8K",
-            "genres": ["Comedy", "Drama", "Romance"]
+            "genres": ["Comedy", "Drama", "Romance"],
+            "description": "A whimsical ensemble comedy-drama set within the final issue of an American magazine published in a fictional French city."
         },
         {
             "id": 23,
@@ -182,7 +204,8 @@
             "poster": "../../public/images/anime/anime8.jpg",
             "rating": 8.9,
             "votes": "25.6K",
-            "genres": ["Sci-Fi", "Adventure", "Drama"]
+            "genres": ["Sci-Fi", "Adventure", "Drama"],
+            "description": "The continuation of the epic saga of Dune, where young Paul Atreides embraces his destiny to face the challenges of the desert planet."
         },
         {
             "id": 24,
@@ -190,7 +213,8 @@
             "poster": "../../public/images/anime/anime9.webp",
             "rating": 8.3,
             "votes": "19.4K",
-            "genres": ["Drama", "Western"]
+            "genres": ["Drama", "Western"],
+            "description": "A tense and emotional drama set in the American West, revolving around a rancher who struggles with his feelings toward his brother and his family."
         },
         {
             "id": 25,
@@ -198,7 +222,8 @@
             "poster": "../../public/images/art/art1.jpeg",
             "rating": 8.7,
             "votes": "22.1K",
-            "genres": ["Comedy", "Drama", "Romance"]
+            "genres": ["Comedy", "Drama", "Romance"],
+            "description": "A darkly comedic romantic drama about a woman who is brought back to life by a mad scientist and embarks on a journey of self-discovery."
         },
         {
             "id": 26,
@@ -206,7 +231,8 @@
             "poster": "../../public/images/art/art2.jpeg",
             "rating": 8.8,
             "votes": "20.3K",
-            "genres": ["Drama", "Romance"]
+            "genres": ["Drama", "Romance"],
+            "description": "A bittersweet romantic drama about two childhood friends who reconnect years later, grappling with love, identity, and missed opportunities."
         },
         {
             "id": 27,
@@ -214,7 +240,8 @@
             "poster": "../../public/images/art/art3.jpeg",
             "rating": 8.4,
             "votes": "18.9K",
-            "genres": ["Action", "Crime", "Drama"]
+            "genres": ["Action", "Crime", "Drama"],
+            "description": "A chilling action-drama about a hitman whose perfect life unravels as he becomes entangled in a dangerous series of events."
         },
         {
             "id": 28,
@@ -222,7 +249,8 @@
             "poster": "../../public/images/art/art4.webp",
             "rating": 8.9,
             "votes": "33.7K",
-            "genres": ["Crime", "Drama", "History"]
+            "genres": ["Crime", "Drama", "History"],
+            "description": "A historical crime drama based on real events, exploring the Osage murders in 1920s America and the ensuing investigation."
         },
         {
             "id": 29,
@@ -230,7 +258,8 @@
             "poster": "../../public/images/cars/cars1.gif",
             "rating": 8.5,
             "votes": "24.6K",
-            "genres": ["Action", "Biography", "Drama"]
+            "genres": ["Action", "Biography", "Drama"],
+            "description": "A biographical drama about the rise and fall of Napoleon Bonaparte, focusing on his ambitious nature and relationships."
         },
         {
             "id": 30,
@@ -238,7 +267,8 @@
             "poster": "../../public/images/cars/cars2.webp",
             "rating": 8.6,
             "votes": "17.8K",
-            "genres": ["Drama", "History", "War"]
+            "genres": ["Drama", "History", "War"],
+            "description": "A haunting drama set in the WWII era, exploring the lives of ordinary individuals amidst the atrocities of war."
         }
     ],
     "TrendingGenres": [

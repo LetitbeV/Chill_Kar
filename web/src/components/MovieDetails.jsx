@@ -26,7 +26,7 @@ const MovieDetails = ({ movie }) => {
       {isScrolled && (
         <div className="fixed top-0 left-0 right-0 bg-white shadow-md z-50 py-3 px-4 flex justify-between items-center">
           <h2 className="text-lg font-bold">{movie.title}</h2>
-          <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-md">
+          <button className="bg-yellow-500 hover:bg-yellow-600 text-black cursor-pointer font-bold py-2 px-6 rounded-md">
             Book tickets
           </button>
         </div>
@@ -36,7 +36,7 @@ const MovieDetails = ({ movie }) => {
       <div
         className="relative w-full bg-cover bg-center"
         style={{
-          backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.8) 20%, transparent), url(${movie.backdropImage || movie.image})`,
+          backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.8) 20%, transparent), url(${movie.backdropImage || movie.poster})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           height: 'auto',
@@ -61,7 +61,7 @@ const MovieDetails = ({ movie }) => {
 
             {/* Rating */}
             <div className="flex items-center mb-4">
-              <Star size={24} className="text-red-500 fill-red-500" />
+              <Star size={24} className="text-yellow-500 fill-yellow-500" />
               <span className="text-xl font-bold ml-2">{movie.rating}/10</span>
               <span className="ml-2 text-gray-300">({movie.votes})</span>
             </div>
@@ -77,7 +77,7 @@ const MovieDetails = ({ movie }) => {
             </div>
 
             {/* Book Tickets Button */}
-            <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-8 rounded-md cursor-pointer">
+            <button className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-md cursor-pointer">
               Book tickets
             </button>
           </div>
