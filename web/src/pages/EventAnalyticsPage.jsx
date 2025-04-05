@@ -84,11 +84,11 @@ const EventsAnalyticsPage = () => {
                                             className="flex-shrink-0 w-64 bg-white rounded-lg shadow-md overflow-hidden cursor-pointer transition transform hover:scale-105"
                                         >
                                             <div className={`h-2 ${event.category === "Live Music" ? "bg-blue-500" :
-                                                    event.category === "Comedy Shows" ? "bg-green-500" :
-                                                        event.category === "Theatre" ? "bg-yellow-500" :
-                                                            event.category === "Concerts" ? "bg-purple-500" :
-                                                                event.category === "Live Sports" ? "bg-red-500" :
-                                                                    "bg-gray-500"
+                                                event.category === "Comedy Shows" ? "bg-green-500" :
+                                                    event.category === "Theatre" ? "bg-yellow-500" :
+                                                        event.category === "Concerts" ? "bg-purple-500" :
+                                                            event.category === "Live Sports" ? "bg-red-500" :
+                                                                "bg-gray-500"
                                                 }`}></div>
                                             <div className="p-4">
                                                 <h3 className="font-bold text-gray-800 text-lg mb-2">{event.name}</h3>

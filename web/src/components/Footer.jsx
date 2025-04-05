@@ -1,23 +1,12 @@
 import React from 'react';
 import {ArrowRight,} from 'lucide-react';
 
-
 const Footer = () => {
     const socialLinks = [
         { name: 'Instagram', link: 'https://www.instagram.com' },
         { name: 'Discord', link: 'https://www.discordapp.com' },
         { name: 'LinkedIn', link: 'https://www.linkedin.com' },
         { name: 'Facebook', link: 'https://www.facebook.com' }
-    ];
-    const collections = [
-        'Gaming',
-        'Anime',
-        'Beauty of Art',
-        'Cars',
-        'City Life',
-        'Marvelous World',
-        'Landscapes',
-        'Miscellaneous'
     ];
     const myAccountLinks = [
         { name: 'My Profile', link: '/nft-user-profile' },
@@ -114,12 +103,10 @@ const Footer = () => {
             <div className="border-t border-gray-800 mt-8 pt-3">
                 <div className="container mx-auto px-4">
                     <div className="flex flex-col md:flex-row justify-between items-center">
-                        {/* Copyright Text */}
                         <div className="mb-4 md:mb-0 text-sm text-gray-400">
                             <span>© 2025 ChillKar. All Rights Reserved.</span>
                         </div>
 
-                        {/* Social Icons */}
                         <div className="flex space-x-6">
                             <i className="fi fi-brands-instagram text-xl hover:text-red-500 "></i>
                             <i className="fi fi-brands-facebook text-xl hover:text-blue-400"></i>

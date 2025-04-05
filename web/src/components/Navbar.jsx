@@ -6,7 +6,6 @@ import {
   Bell,
   ShoppingBag,
   Monitor,
-  CreditCard,
   HelpCircle,
   Settings,
   Award,
@@ -79,25 +78,10 @@ const Navbar = () => {
             </NavLink>
 
             <SearchBar />
-            {/* Search Bar */}
-            {/* <div className="hidden md:flex items-center flex-1 max-w-2xl relative">
-              <Search className="absolute left-3 text-gray-400" size={18} />
-              <input
-                type="text"
-                placeholder="Search for Movies, Events, Plays, Sports and Activities"
-                className="mr-10 pl-10 pr-4 py-2 rounded w-full border border-gray-300 focus:outline-none focus:ring-1 focus:ring-yellow-500"
-              />
-            </div> */}
           </div>
 
           {/* Location and Sign In */}
           <div className="flex items-center gap-4">
-            {/* Location */}
-            {/* <div className="hidden md:flex items-center cursor-pointer">
-              <span>{location}</span>
-              <ChevronDown size={16} />
-            </div> */}
-
             {/* Sign In Button */}
             <button
               onClick={handleConnectWallet}
@@ -105,8 +89,6 @@ const Navbar = () => {
             >
               {currentAccount.substring(0,6)+"..." || "Connect Wallet"}
             </button>
-            {/* Sign In Button */}
-
             {/* Hamburger Menu */}
             <button
               className="p-1 focus:outline-none cursor-pointer"
