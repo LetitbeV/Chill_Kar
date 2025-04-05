@@ -45,6 +45,7 @@
 
 
                     <TextView
+                        android:id="@+id/tv_tickets"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -54,6 +55,7 @@
                         android:textStyle="bold" />
 
                     <com.google.android.material.progressindicator.CircularProgressIndicator
+                        android:id="@+id/progress_circular"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
@@ -71,6 +73,7 @@
                     app:layout_constraintTop_toBottomOf="@id/frame_layout">
 
                     <TextView
+                        android:id="@+id/tv_sales"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="2dp"
@@ -78,6 +81,7 @@
                         android:textSize="16sp" />
 
                     <TextView
+                        android:id="@+id/tv_revenue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="2dp"
@@ -109,6 +113,7 @@
                     android:textStyle="bold" />
 
                 <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/daily_sales_chart"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_margin="10dp" />
@@ -139,12 +144,14 @@
                         android:textStyle="bold" />
 
                     <Spinner
+                        android:id="@+id/sales_spinner"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                 </LinearLayout>
 
                 <com.github.mikephil.charting.charts.HorizontalBarChart
+                    android:id="@+id/horizontal_bar_chart"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_margin="10dp" />
@@ -155,6 +162,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:visibility="gone"
             app:cardCornerRadius="10dp">
 
             <LinearLayout
@@ -197,6 +205,7 @@
                     android:textStyle="bold" />
 
                 <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/pie_chart"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_margin="10dp" />

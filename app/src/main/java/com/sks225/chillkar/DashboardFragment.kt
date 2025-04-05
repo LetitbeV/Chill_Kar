@@ -17,21 +17,24 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.sks225.chillkar.adapter.YourEventsAdapter
 import com.sks225.chillkar.databinding.FragmentDashboardBinding
-import com.sks225.chillkar.model.*
+import com.sks225.chillkar.model.Event
+import com.sks225.chillkar.model.EventAnalytics
+import com.sks225.chillkar.model.EventCategory
+import com.sks225.chillkar.model.Gender
+import com.sks225.chillkar.model.OverallAnalytics
+import com.sks225.chillkar.samples.eventAnalyticsList
 import com.sks225.chillkar.samples.sampleEvents
-import java.text.SimpleDateFormat
-import java.util.*
 
 class DashboardFragment : Fragment() {
     private lateinit var binding: FragmentDashboardBinding
     private lateinit var navController: NavController
     private lateinit var chart: LineChart
-
     private var cvOverallVisibility: Boolean = true
     private val userName: String = "User Name"
 
+    private lateinit var eventAnalytics: Map<Int, EventAnalytics>
+    private lateinit var overallAnalytics: OverallAnalytics
     private lateinit var eventsList: List<Event>
-    private lateinit var ticketsList: List<Ticket>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,14 +43,24 @@ class DashboardFragment : Fragment() {
         binding = FragmentDashboardBinding.inflate(inflater, container, false)
         navController = findNavController()
 
-        // Sample events and dummy tickets
+        // Sample data
+        eventAnalytics = eventAnalyticsList
         eventsList = sampleEvents
-        ticketsList = generateDummyTickets()
+        overallAnalytics = generateOverallAnalytics(eventAnalytics)
 
         binding.tvGreeting.text = "Welcome, $userName"
 
+        val totalRevenue = overallAnalytics.totalRevenue
+        val totalSales = overallAnalytics.ticketsSold
+        binding.tvRevenue.text = "Revenue: $$totalRevenue"
+        binding.tvTicektsSold.text = "Tickets Sold: $totalSales"
+
         binding.cvOverall.setOnClickListener {
-            navController.navigate(R.id.action_dashboardFragment_to_overallAnalyticsFragment)
+            val action =
+                DashboardFragmentDirections.actionDashboardFragmentToOverallAnalyticsFragment(
+                    overallAnalytics
+                )
+            navController.navigate(action)
         }
 
         binding.tvGreeting.setOnClickListener {
@@ -58,17 +71,21 @@ class DashboardFragment : Fragment() {
             if (cvOverallVisibility) {
                 binding.cvOverall.visibility = View.GONE
                 binding.tvGreeting.visibility = View.GONE
-                cvOverallVisibility = false
             } else {
                 binding.cvOverall.visibility = View.VISIBLE
                 binding.tvGreeting.visibility = View.VISIBLE
-                cvOverallVisibility = true
             }
+            cvOverallVisibility = !cvOverallVisibility
         }
 
         binding.rvYourEvents.adapter = YourEventsAdapter(eventsList, requireContext()) { event ->
-            navController.navigate(R.id.action_dashboardFragment_to_eventAnalyticsFragment)
+            val action =
+                DashboardFragmentDirections.actionDashboardFragmentToEventAnalyticsFragment(
+                    eventAnalytics[event.eventId]!!, event
+                )
+            navController.navigate(action)
         }
+
         binding.rvYourEvents.layoutManager = LinearLayoutManager(requireContext())
         binding.rvYourEvents.setHasFixedSize(true)
 
@@ -77,27 +94,30 @@ class DashboardFragment : Fragment() {
         }
 
         chart = binding.lineChart
-        setupLineChart(ticketsList)
+        setupOverallLineChart(overallAnalytics.dailySales)
 
         return binding.root
     }
 
-    private fun setupLineChart(tickets: List<Ticket>) {
-        val weeklySales = getWeeklyTicketSales(tickets)
-        val (entries, labels) = convertWeeklySalesToEntries(weeklySales)
+    private fun setupOverallLineChart(dailySales: Map<String, Int>) {
+        val sortedSales = dailySales.toList().sortedBy { it.first }
 
-        val dataSet = LineDataSet(entries, "Tickets Sold This Week").apply {
-            color = Color.BLUE
+        val entries = sortedSales.mapIndexed { index, pair ->
+            Entry(index.toFloat(), pair.second.toFloat())
+        }
+
+        val labels = sortedSales.map { it.first }
+
+        val dataSet = LineDataSet(entries, "Overall Daily Sales").apply {
+            color = Color.MAGENTA
             valueTextSize = 12f
             setDrawCircles(true)
             setDrawFilled(true)
-            fillColor = Color.CYAN
+            fillColor = Color.LTGRAY
         }
 
         chart.apply {
             data = LineData(dataSet)
-
-            // X-axis formatting
             xAxis.apply {
                 valueFormatter = IndexAxisValueFormatter(labels)
                 granularity = 1f
@@ -105,84 +125,52 @@ class DashboardFragment : Fragment() {
                 labelRotationAngle = -45f
                 setDrawGridLines(false)
             }
-
-            // Y-axis auto scale
             axisLeft.axisMinimum = 0f
-            axisLeft.axisMaximum = (entries.maxOfOrNull { it.y } ?: 10f) + 20f
             axisRight.isEnabled = false
-
-            description.text = "Daily Ticket Sales (This Week)"
+            description.text = "Total Tickets Sold Per Day"
             animateX(1000)
             invalidate()
         }
     }
 
-    private fun getCurrentWeekDates(): List<String> {
-        val calendar = Calendar.getInstance()
-        calendar.set(Calendar.DAY_OF_WEEK, calendar.firstDayOfWeek)
+    private fun generateOverallAnalytics(eventAnalyticsMap: Map<Int, EventAnalytics>): OverallAnalytics {
+        var totalTicketsSold = 0
+        var totalMaxTickets = 0
+        val ageMap = mutableMapOf<Int, Int>()
+        var totalRevenue = 0.0
+        val genderMap = mutableMapOf<Gender, Int>()
+        val categoryMap = mutableMapOf<EventCategory, Int>()
+        val dailySalesMap = mutableMapOf<String, Int>()
 
-        val sdf = SimpleDateFormat("dd MMM", Locale.getDefault())
-        return (0..6).map {
-            val date = sdf.format(calendar.time)
-            calendar.add(Calendar.DAY_OF_MONTH, 1)
-            date
-        }
-    }
+        for (analytics in eventAnalyticsMap.values) {
+            totalTicketsSold += analytics.ticketsSold
+            totalMaxTickets += analytics.maxTickets
+            totalRevenue += analytics.totalRevenue
 
-    private fun getWeeklyTicketSales(tickets: List<Ticket>): Map<String, Int> {
-        val sdf = SimpleDateFormat("dd MMM", Locale.getDefault())
-        val weekDates = getCurrentWeekDates()
-        val weeklySales = weekDates.associateWith { 0 }.toMutableMap()
+            analytics.salesByAge.forEach { (age, count) ->
+                ageMap[age] = ageMap.getOrDefault(age, 0) + count
+            }
 
-        for (ticket in tickets) {
-            val date = sdf.format(Date(ticket.timestamp))
-            if (weeklySales.containsKey(date)) {
-                weeklySales[date] = weeklySales[date]!! + 1
+            analytics.salesByGender.forEach { (gender, count) ->
+                genderMap[gender] = genderMap.getOrDefault(gender, 0) + count
+            }
+
+            categoryMap[analytics.category] =
+                categoryMap.getOrDefault(analytics.category, 0) + analytics.ticketsSold
+
+            analytics.dailySales.forEach { (date, count) ->
+                dailySalesMap[date] = dailySalesMap.getOrDefault(date, 0) + count
             }
         }
 
-        return weeklySales
-    }
-
-    private fun convertWeeklySalesToEntries(salesMap: Map<String, Int>): Pair<List<Entry>, List<String>> {
-        val entries = mutableListOf<Entry>()
-        val labels = mutableListOf<String>()
-        var index = 0f
-
-        for ((date, count) in salesMap) {
-            entries.add(Entry(index, count.toFloat()))
-            labels.add(date)
-            index++
-        }
-
-        return Pair(entries, labels)
-    }
-
-    private fun generateDummyTickets(): List<Ticket> {
-        val calendar = Calendar.getInstance()
-        calendar.set(Calendar.DAY_OF_WEEK, calendar.firstDayOfWeek)
-
-        val dummyTickets = mutableListOf<Ticket>()
-
-        // Dummy counts: Mon=100, Tue=200, Wed=0, Thu=500, Fri=150, Sat=300, Sun=0
-        val dailySales = listOf(100, 200, 0, 500, 150, 300, 0)
-
-        for (i in dailySales.indices) {
-            val date = calendar.timeInMillis
-            repeat(dailySales[i]) {
-                dummyTickets.add(
-                    Ticket(
-                        age = 25,
-                        gender = Gender.MALE,
-                        timestamp = date,
-                        region = "Delhi",
-                        category = EventCategory.CONCERTS
-                    )
-                )
-            }
-            calendar.add(Calendar.DAY_OF_MONTH, 1)
-        }
-
-        return dummyTickets
+        return OverallAnalytics(
+            ticketsSold = totalTicketsSold,
+            maxTickets = totalMaxTickets,
+            totalRevenue = totalRevenue,
+            salesByAge = ageMap,
+            salesByGender = genderMap,
+            salesByCategory = categoryMap,
+            dailySales = dailySalesMap
+        )
     }
 }
