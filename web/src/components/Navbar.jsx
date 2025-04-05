@@ -2,23 +2,24 @@ import React, { useState } from 'react';
 import { ChevronDown, Menu, Gift, Bell, ShoppingBag, Monitor, CreditCard, HelpCircle, Settings, Award, X } from 'lucide-react';
 import { BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import SearchBar from './SearchBar';
 
 const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [location, setLocation] = useState('Mumbai');
-  
-  const navigate=useNavigate();
+
+  const navigate = useNavigate();
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
   const handleLogin = () => {
-    navigate('/login') 
+    navigate('/login')
   }
-  
+
   const handleSignUp = () => {
-    navigate('/signup') 
+    navigate('/signup')
   }
 
 
@@ -40,6 +41,7 @@ const Navbar = () => {
               </div>
             </NavLink>
 
+            <SearchBar />
             {/* Search Bar */}
             {/* <div className="hidden md:flex items-center flex-1 max-w-2xl relative">
               <Search className="absolute left-3 text-gray-400" size={18} />
@@ -124,6 +126,16 @@ const Navbar = () => {
           </ul>
 
           <ul className="hidden md:flex gap-6">
+            <li className="font-medium text-gray-800 hover:text-yellow-500 cursor-pointer">
+              <NavLink
+                to="/events-analytics"
+                className={({ isActive }) =>
+                  `text-gray-800 hover:text-yellow-500 cursor-pointer ${isActive ? 'text-yellow-500 underline underline-offset-3' : ''}`
+                }
+              >
+                Events Analytics
+              </NavLink>
+            </li>
             <li className="font-medium text-gray-800 hover:text-yellow-500 cursor-pointer">
               <NavLink
                 to="/PostEvent"

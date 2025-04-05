@@ -10,7 +10,7 @@ const Homepage = () => {
   const { recommendedMovies, TrendingGenres } = MoviesData;
 
   return (
-    <div className="mr-auto ml-auto max-w-11/12 rounded-4xl bg-white pb-8">
+    <div className="mr-auto ml-auto max-w-11/12 rounded-4xl bg-white pb-8 pt-6 mt-4 px-4">
       {/* Recommended Movies Section */}
       <ScrollableSection
         title="Recommended Movies"
@@ -21,7 +21,7 @@ const Homepage = () => {
       />
       
       {/* Stream Banner */}
-      <section className="py-2">
+      <section className="py-4">
         <div className="container mx-auto px-4">
           <div className="bg-gray-900 rounded-lg overflow-hidden">
             <div className="flex items-center p-4 md:p-6">

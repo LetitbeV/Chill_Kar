@@ -29,8 +29,8 @@ const SearchBar = () => {
     }, [searchQuery])
 
     return (
-        <div className="mt-15 mb-15 ml-auto mr-auto max-w-2xl relative">
-            <div className="bg-white flex items-center flex-1 relative rounded-2xl">
+        <div className="mt-15 mb-15 max-w-2xl relative">
+            <div className="bg-white flex w-full items-center flex-1 relative rounded-2xl">
                 <Search className="absolute left-3 text-gray-400" size={18} />
                 <input
                     type="text"
