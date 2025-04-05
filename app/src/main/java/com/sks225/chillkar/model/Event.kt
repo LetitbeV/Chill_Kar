@@ -5,6 +5,7 @@ import android.os.Parcelable
 
 @kotlinx.parcelize.Parcelize
 data class Event(
+    val eventId: Int,
     val name: String,
     val timeStamp: Long,
     val poster: Uri,

@@ -33,7 +33,7 @@ class TicketDetailsFragment : Fragment() {
             Snackbar.make(
                 requireContext(),
                 binding.root,
-                "Invalid Ticket",
+                "Invalid TicketTransaction",
                 Snackbar.LENGTH_SHORT
             ).show()
             navController.navigateUp()
