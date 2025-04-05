@@ -29,4 +29,7 @@
     <string name="buy">Buy</string>
     <string name="sell">Sell (%1$d)</string>
     <string name="ticket_price">♦ %1$d</string>
+    <string name="explore">Explore</string>
+    <string name="vip_price">VIP: ♦%1$d</string>
+    <string name="general_price">General: ♦%1$d</string>
 </resources>
