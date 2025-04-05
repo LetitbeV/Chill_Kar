@@ -10,7 +10,7 @@ const EventTut = ({ movie }) => {
   const [movieData, setMovieData] = useState(null);
   const navigate = useNavigate();
   const handleCardClick = () => {
-    navigate(`/movies/${movie.id}`);
+    navigate(`/events/${movie.args[2]}`);
   };
 
   const getData = async (imageCID, address) => {
@@ -28,6 +28,8 @@ const EventTut = ({ movie }) => {
   useEffect(() => {
     getData(movie.CID, movie.args[1]);
   }, [movie]);
+
+  console.log("movie: ", movie);
 
   const data = movie.args;
 

@@ -21,6 +21,7 @@ const Layout = () => {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
+          <Route path="/events/:eventId" element={<MovieDetailsPage />} />
           <Route path="/Movies" element={<ListEvents eventType={`Movies`} />} />
           <Route path="/Sports" element={<ListEvents eventType={`Sports`} />} />
           <Route path="/Concerts" element={<ListEvents eventType={`Concert`} />} />
