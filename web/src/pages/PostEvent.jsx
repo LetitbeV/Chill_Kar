@@ -24,7 +24,7 @@ const PostEvent = () => {
     Other: ['Exhibition', 'Conference', 'Workshop', 'Food Festival', 'Cultural', 'Fashion', 'Tech']
   };
 
-  const eventTypes = ['Movie', 'Sports', 'Concert', 'Other'];
+  const eventTypes = ['Movie', 'Sports', 'Concert', 'Others'];
   const ageRatingOptions = ['All Ages', '13+', '16+', '18+', '21+'];
 
   // Update event type and reset genres when type changes

@@ -1,6 +1,7 @@
-const contractAddress = "0x1149d9fe8b5d18548f41e326ce53ea8456d6d364";
+export const contractAddress = "0x1149d9fe8b5d18548f41e326ce53ea8456d6d364";
+export const SEPOLIA_ID = "0xaa36a7";
 
-const contractABI = [
+export const contractABI = [
   {
     inputs: [
       {

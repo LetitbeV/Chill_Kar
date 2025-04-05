@@ -1,49 +1,63 @@
-import React, { useState } from 'react';
-import { ChevronDown, Menu, Gift, Bell, ShoppingBag, Monitor, CreditCard, HelpCircle, Settings, Award, X } from 'lucide-react';
-import { BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-import SearchBar from './SearchBar';
+import React, { useState } from "react";
+import {
+  ChevronDown,
+  Menu,
+  Gift,
+  Bell,
+  ShoppingBag,
+  Monitor,
+  CreditCard,
+  HelpCircle,
+  Settings,
+  Award,
+  X,
+} from "lucide-react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  NavLink,
+} from "react-router-dom";
+import SearchBar from "./SearchBar";
 
 const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [location, setLocation] = useState('Mumbai');
-
-  const navigate = useNavigate();
+  const [currentAccount, setCurrentAccount] = useState("");
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const handleLogin = () => {
-    navigate('/login')
-  }
+  const handleConnectWallet = async () => {
+    try {
+      const { ethereum } = window;
 
-  const handleSignUp = () => {
-    navigate('/signup')
-  }
+      if (!ethereum) {
+        console.log("Metamask not detected");
+        window.alert("Connect to Metamask");
+        window.location = "https://metamask.io/";
+        return;
+      }
 
-  const handleConnectWallet = () => {
-    // Logic to connect wallet goes here
-    console.log('Connect Wallet clicked');
-    const {ethereum} = window;
-    if (ethereum && ethereum.isMetaMask) {
-      console.log('MetaMask is installed');
-      ethereum.request({ method: 'eth_requestAccounts' })
-        .then(accounts => {
-          console.log('Connected account:', accounts[0]);
-          // Handle successful connection here
-        })
-        .catch(error => {
-          console.error('Error connecting wallet:', error);
-          // Handle error here
-        });
-    } else {
-      console.error('MetaMask is not installed');
-      // Handle MetaMask not installed case here
+      let chainId = await ethereum.request({ method: "eth_chainId" });
+      console.log("Connected to chain:" + chainId);
+      const sepoliaChainId = "0xaa36a7";
+
+      if (chainId !== sepoliaChainId) {
+        alert("You are not connected to the Sepolia Testnet!");
+        return;
+      }
+
+      const accounts = await ethereum.request({
+        method: "eth_requestAccounts",
+      });
+
+      console.log("Found account", accounts[0]);
+      setCurrentAccount(accounts[0]);
+    } catch (error) {
+      console.log("Error connecting to metamask", error);
     }
-  }
-
-
+  };
 
   return (
     <header className="w-full shadow-md bg-white">
@@ -56,7 +70,9 @@ const Navbar = () => {
             <NavLink to="/">
               <div className="flex items-center">
                 <div className="text-xl font-bold">
-                  <span className="text-yellow-600 bg-yellow-100 px-1 mx-1 rounded text-3xl">Chill</span>
+                  <span className="text-yellow-600 bg-yellow-100 px-1 mx-1 rounded text-3xl">
+                    Chill
+                  </span>
                   <span className="text-gray-800 text-3xl">Kar</span>
                 </div>
               </div>
@@ -83,11 +99,13 @@ const Navbar = () => {
             </div> */}
 
             {/* Sign In Button */}
-            <button onClick={handleConnectWallet} className="bg-yellow-500 cursor-pointer text-white rounded py-1 px-4 hover:bg-yellow-600 transition-colors">
-             Connect Wallet
+            <button
+              onClick={handleConnectWallet}
+              className="bg-yellow-500 cursor-pointer text-white rounded py-1 px-4 hover:bg-yellow-600 transition-colors"
+            >
+              {currentAccount.substring(0,6)+"..." || "Connect Wallet"}
             </button>
             {/* Sign In Button */}
-
 
             {/* Hamburger Menu */}
             <button
@@ -106,7 +124,11 @@ const Navbar = () => {
               <NavLink
                 to="/Movies"
                 className={({ isActive }) =>
-                  `text-gray-800 hover:text-yellow-500 cursor-pointer ${isActive ? 'text-yellow-500 underline underline-offset-3' : ''}`
+                  `text-gray-800 hover:text-yellow-500 cursor-pointer ${
+                    isActive
+                      ? "text-yellow-500 underline underline-offset-3"
+                      : ""
+                  }`
                 }
               >
                 Movies
@@ -116,7 +138,11 @@ const Navbar = () => {
               <NavLink
                 to="/Sports"
                 className={({ isActive }) =>
-                  `text-gray-800 hover:text-yellow-500 cursor-pointer ${isActive ? 'text-yellow-500 underline underline-offset-3' : ''}`
+                  `text-gray-800 hover:text-yellow-500 cursor-pointer ${
+                    isActive
+                      ? "text-yellow-500 underline underline-offset-3"
+                      : ""
+                  }`
                 }
               >
                 Sports
@@ -126,7 +152,11 @@ const Navbar = () => {
               <NavLink
                 to="/Concerts"
                 className={({ isActive }) =>
-                  `text-gray-800 hover:text-yellow-500 cursor-pointer ${isActive ? 'text-yellow-500 underline underline-offset-3' : ''}`
+                  `text-gray-800 hover:text-yellow-500 cursor-pointer ${
+                    isActive
+                      ? "text-yellow-500 underline underline-offset-3"
+                      : ""
+                  }`
                 }
               >
                 Concerts
@@ -136,7 +166,11 @@ const Navbar = () => {
               <NavLink
                 to="/Events"
                 className={({ isActive }) =>
-                  `text-gray-800 hover:text-yellow-500 cursor-pointer ${isActive ? 'text-yellow-500 underline  underline-offset-3' : ''}`
+                  `text-gray-800 hover:text-yellow-500 cursor-pointer ${
+                    isActive
+                      ? "text-yellow-500 underline  underline-offset-3"
+                      : ""
+                  }`
                 }
               >
                 Other Events
@@ -149,7 +183,11 @@ const Navbar = () => {
               <NavLink
                 to="/events-analytics"
                 className={({ isActive }) =>
-                  `text-gray-800 hover:text-yellow-500 cursor-pointer ${isActive ? 'text-yellow-500 underline underline-offset-3' : ''}`
+                  `text-gray-800 hover:text-yellow-500 cursor-pointer ${
+                    isActive
+                      ? "text-yellow-500 underline underline-offset-3"
+                      : ""
+                  }`
                 }
               >
                 Events Analytics
@@ -159,7 +197,11 @@ const Navbar = () => {
               <NavLink
                 to="/PostEvent"
                 className={({ isActive }) =>
-                  `text-gray-800 hover:text-yellow-500 cursor-pointer ${isActive ? 'text-yellow-500 underline underline-offset-3' : ''}`
+                  `text-gray-800 hover:text-yellow-500 cursor-pointer ${
+                    isActive
+                      ? "text-yellow-500 underline underline-offset-3"
+                      : ""
+                  }`
                 }
               >
                 ListYourShow
@@ -170,7 +212,11 @@ const Navbar = () => {
       </div>
 
       {/* Sidebar Menu */}
-      <div className={`fixed inset-y-0 right-0 w-80 bg-white shadow-xl z-50 transform ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out flex flex-col`}>
+      <div
+        className={`fixed inset-y-0 right-0 w-80 bg-white shadow-xl z-50 transform ${
+          isSidebarOpen ? "translate-x-0" : "translate-x-full"
+        } transition-transform duration-300 ease-in-out flex flex-col`}
+      >
         {/* Header section */}
         <div className="p-4 border-b border-gray-200">
           <div className="flex justify-between items-center">
@@ -270,20 +316,41 @@ const Navbar = () => {
 };
 
 // Helper component for sidebar menu items for better consistency and maintenance
-const SidebarMenuItem = ({ icon, customIcon, title, subtitle, showChevron, showLock, isLast = false }) => {
+const SidebarMenuItem = ({
+  icon,
+  customIcon,
+  title,
+  subtitle,
+  showChevron,
+  showLock,
+  isLast = false,
+}) => {
   return (
-    <div className={`border-b border-gray-200 ${isLast ? 'pb-4' : ''}`}>
+    <div className={`border-b border-gray-200 ${isLast ? "pb-4" : ""}`}>
       <div className="flex items-center justify-between p-4">
         <div className="flex items-center gap-3">
           {icon || customIcon}
           <div>
             <p className="text-gray-800 font-medium text-base">{title}</p>
-            {subtitle && <p className="text-gray-400 text-xs mt-1">{subtitle}</p>}
+            {subtitle && (
+              <p className="text-gray-400 text-xs mt-1">{subtitle}</p>
+            )}
           </div>
         </div>
         {showChevron && <ChevronDown size={18} className="text-gray-500" />}
         {showLock && (
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-300">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="text-gray-300"
+          >
             <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
             <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
           </svg>
