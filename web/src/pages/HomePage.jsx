@@ -5,6 +5,7 @@ import MovieCard from '../components/MovieCard';
 import EventCard from '../components/EventCard';
 import ScrollableSection from '../Features/ScrollableSection';
 import MoviesData from '../SampleData/MoviesData.json';
+import StreamBanner from '../components/StreamBanner';
 
 const Homepage = () => {
   const { recommendedMovies, TrendingGenres } = MoviesData;
@@ -21,26 +22,7 @@ const Homepage = () => {
       />
       
       {/* Stream Banner */}
-      <section className="py-4">
-        <div className="container mx-auto px-4">
-          <div className="bg-gray-900 rounded-lg overflow-hidden">
-            <div className="flex items-center p-4 md:p-6">
-              <div className="flex flex-col md:flex-row items-center justify-between w-full">
-                <div className="flex items-center mb-4 md:mb-0">
-                  <div className="text-lg md:text-xl font-bold text-white mr-2">
-                    <span>Chill</span>
-                    <span className="text-yellow-500">Kar</span>
-                  </div>
-                  <div className="text-white font-bold text-lg md:text-2xl ml-2">STREAM</div>
-                </div>
-                <div className="text-yellow-400 font-medium text-center text-sm md:text-base">
-                  Endless Entertainment Anytime. Anywhere!
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <StreamBanner/>
       
       {/* TrendingGenres Section */}
       <ScrollableSection
