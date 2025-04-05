@@ -5,16 +5,42 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <Button
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Welcome Back!"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_login_user"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login as User" />
+        android:layout_margin="10dp"
+        android:background="@color/black"
+        android:padding="10dp"
+        android:text="Login as User"
+        android:textColor="@color/white" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_login_organizer"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login as Organizer" />
+        android:layout_margin="10dp"
+        android:background="@color/black"
+        android:padding="10dp"
+        android:text="Login as Organizer"
+        android:textColor="@color/white" />
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 </LinearLayout>
