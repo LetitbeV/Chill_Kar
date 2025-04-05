@@ -6,6 +6,7 @@ import EventCard from '../components/EventCard';
 import ScrollableSection from '../Features/ScrollableSection';
 import MoviesData from '../SampleData/MoviesData.json';
 import allEventsData from '../SampleData/AllEventsData.json'
+import StreamBanner from '../components/StreamBanner';
 
 const Homepage = () => {
   const { recommendedMovies, TrendingGenres } = MoviesData;
