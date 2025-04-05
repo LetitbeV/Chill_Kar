@@ -11,7 +11,7 @@ import getEvents from "../contractLogic/getEvents";
 import EventTut from "../components/EventTut";
 
 const Homepage = () => {
-  const { recommendedMovies, TrendingGenres } = MoviesData;
+  const { TrendingGenres } = MoviesData;
   const [eventsData, setEventsData] = useState(null);
 
   useEffect(() => {

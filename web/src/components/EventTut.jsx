@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { Star } from "lucide-react";
 import { getImageFromPinata } from "../contractLogic/pinataUtils";
 import defaultImage from "../../public/images/anime/anime1.jpeg";
-import getDataByAddr from "../contractLogic/getIPFSHash";
+import getDataByAddr from "../contractLogic/getDataByAddr";
 
 const EventTut = ({ movie }) => {
   const [image, setImage] = useState(defaultImage);
   const [movieData, setMovieData] = useState(null);
   const navigate = useNavigate();
   const handleCardClick = () => {
-    navigate(`/events/${movie.args[2]}`);
+    navigate(`/events/${movie.args[1]}/${movie.args[7]}`);
   };
 
   const getData = async (imageCID, address) => {
@@ -21,15 +21,16 @@ const EventTut = ({ movie }) => {
     }
     setImage(result);
 
-    result = await getDataByAddr(address, movie);
-    setMovieData(result);
+    const bandData = await getDataByAddr(address);
+    const matchedEvent = bandData.events.find(
+      (event) => event.eventTime === movie.args[7]
+    );
+    setMovieData(matchedEvent);
   };
 
   useEffect(() => {
     getData(movie.CID, movie.args[1]);
   }, [movie]);
-
-  console.log("movie: ", movie);
 
   const data = movie.args;
 

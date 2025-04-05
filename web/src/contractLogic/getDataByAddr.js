@@ -2,7 +2,7 @@ import { contractAddress, contractABI } from "../../contractDetails";
 import { ethers } from "ethers";
 import { getFromPinata } from "./pinataUtils";
 
-const getDataByAddr = async (addr, movie) => {
+const getDataByAddr = async (addr) => {
   const { ethereum } = window;
 
   if (ethereum) {
@@ -18,11 +18,7 @@ const getDataByAddr = async (addr, movie) => {
       const cid = await contract.bandMetaDataCID(addr);
       const bandData = await getFromPinata(cid);
 
-      const matchedEvent = bandData.events.find(
-        (event) => event.eventTime === movie.args[7]
-      );
-
-      return matchedEvent || null;
+      return bandData;
     } catch (e) {
       console.log("error: ", e);
     }
