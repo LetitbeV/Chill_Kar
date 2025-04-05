@@ -12,17 +12,19 @@ import com.sks225.chillkar.R
 import com.sks225.chillkar.formatEpochTime
 import com.sks225.chillkar.model.Event
 
-class TicketsHorizontalAdapter(private val items: Array<Event>, private val context: Context) :
-    RecyclerView.Adapter<TicketsHorizontalAdapter.ViewHolder>() {
+class TicketsVerticalAdapter(private val items: Array<Event>, private val context: Context) :
+    RecyclerView.Adapter<TicketsVerticalAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title: TextView = view.findViewById(R.id.ticket_title)
         val date: TextView = view.findViewById(R.id.ticket_time)
         val poster: ImageView = view.findViewById(R.id.ticket_thumbnail)
+        val location: TextView = view.findViewById(R.id.ticket_location)
+        val price: TextView = view.findViewById(R.id.ticket_price)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.horizontal_ticket_item, viewGroup, false)
+            .inflate(R.layout.vertical_ticket_item, viewGroup, false)
         return ViewHolder(view)
     }
 
@@ -31,7 +33,12 @@ class TicketsHorizontalAdapter(private val items: Array<Event>, private val cont
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.title.text = items[position].name
         holder.date.text = formatEpochTime(items[position].timeStamp)
-        holder.poster.setImageURI(items[position].poster)
+        holder.location.text = items[position].location
+        holder.price.text = context.resources.getString(
+            R.string.ticket_price,
+            items[position].generalTicket.price
+        )
+
         Glide.with(context).load(items[position].poster).into(holder.poster)
     }
 }

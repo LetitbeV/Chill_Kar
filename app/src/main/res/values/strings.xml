@@ -27,5 +27,6 @@
     <string name="ticket_details">Ticket Details</string>
     <string name="description">Description:</string>
     <string name="buy">Buy</string>
-    <string name="sell">Sell (%d)</string>
+    <string name="sell">Sell (%1$d)</string>
+    <string name="ticket_price">♦ %1$d</string>
 </resources>
