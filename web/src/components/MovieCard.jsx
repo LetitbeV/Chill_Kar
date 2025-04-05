@@ -7,8 +7,6 @@ import defaultImage from '../../public/images/art/art2.jpeg'
 const MovieCard = ({ movie }) => {
   const navigate = useNavigate();
   const handleCardClick = () =>{
-    // Handle card click event
-    // console.log(`Clicked on movie: ${movie.title}`);
     navigate(`/movies/${movie.id}`);
   }
   return (

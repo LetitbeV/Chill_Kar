@@ -5,8 +5,6 @@ import defaultPoster from '../../public/images/anime/anime4.png'; // Default pos
 const MovieDetails = ({ movie }) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
-  console.log(movie);
-
   useEffect(() => {
     const handleScroll = () => {
       // Show fixed booking button when scrolled past hero section
@@ -65,10 +63,6 @@ const MovieDetails = ({ movie }) => {
               <span className="text-xl font-bold ml-2">{movie.rating}/10</span>
               <span className="ml-2 text-gray-300">({movie.votes})</span>
             </div>
-
-            {/* Movie Format */}
-
-
             {/* Movie Details */}
             <div className="flex flex-wrap items-center text-sm text-gray-300 mb-8">
               <span>{movie.genres && movie.genres.join(', ')}</span>
@@ -81,8 +75,6 @@ const MovieDetails = ({ movie }) => {
               Book tickets
             </button>
           </div>
-
-          {/* Share Button - Positioned on right side */}
         </div>
       </div>
 
@@ -92,9 +84,6 @@ const MovieDetails = ({ movie }) => {
         <p className="text-gray-700 leading-relaxed mb-8">
           {movie.description}
         </p>
-
-        {/* Cast Section */}
-        {/* <h2 className="text-2xl font-bold text-gray-900 mb-6">Cast</h2> */}
 
       </div>
 

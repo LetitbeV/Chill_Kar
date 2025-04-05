@@ -38,9 +38,9 @@ const Homepage = () => {
                 <div className="flex items-center mb-4 md:mb-0">
                   <div className="text-lg md:text-xl font-bold text-white mr-2">
                     <span>Chill</span>
-                    <span className="text-red-500">Kar</span>
+                    <span className="text-yellow-500">Kar</span>
                   </div>
-                  <div className="text-white font-bold text-lg md:text-xl ml-2">STREAM</div>
+                  <div className="text-white font-bold text-lg md:text-2xl ml-2">STREAM</div>
                 </div>
                 <div className="text-yellow-400 font-medium text-center text-sm md:text-base">
                   Endless Entertainment Anytime. Anywhere!
