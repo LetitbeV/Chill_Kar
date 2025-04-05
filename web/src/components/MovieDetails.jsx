@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Star, Share } from 'lucide-react';
-import defaultPoster from '../../public/images/anime/anime4.png'; // Default poster image
+import { Star, Share, X } from 'lucide-react';
+import defaultPoster from '/images/anime/anime4.png'; // Default poster image
 
 const MovieDetails = ({ movie }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showBookingModal, setShowBookingModal] = useState(false);
+  const [bookingData, setBookingData] = useState({
+    age: '',
+    gender: '',
+    region: '',
+    eventCategory: movie?.eventType || 'Other Events',
+    timestamp: new Date().toISOString()
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,13 +26,91 @@ const MovieDetails = ({ movie }) => {
 
   if (!movie) return null;
 
+  const handleBookingSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission here
+    console.log('Booking data:', bookingData);
+    setShowBookingModal(false);
+  };
+
+  const regions = ['Mumbai', 'Delhi', 'Bangalore', 'Hyderabad', 'Chennai', 'Kolkata'];
+
   return (
     <div className="bg-gray-100 min-h-screen">
+      {/* Booking Modal */}
+      {showBookingModal && (
+        <>
+          {/* Dark overlay */}
+          <div className="fixed inset-0 bg-black opacity-50 z-40" />
+          {/* Modal content */}
+          <div className="fixed inset-0 z-50 flex items-center justify-center">
+            <div className="bg-white p-6 rounded-lg w-full max-w-md relative">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-bold">Book Tickets</h2>
+                <button onClick={() => setShowBookingModal(false)}>
+                  <X size={24} />
+                </button>
+              </div>
+              <form onSubmit={handleBookingSubmit}>
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Age</label>
+                    <input
+                      type="number"
+                      className="w-full p-2 border rounded"
+                      value={bookingData.age}
+                      onChange={(e) => setBookingData({...bookingData, age: e.target.value})}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Gender</label>
+                    <select
+                      className="w-full p-2 border rounded"
+                      value={bookingData.gender}
+                      onChange={(e) => setBookingData({...bookingData, gender: e.target.value})}
+                      required
+                    >
+                      <option value="">Select gender</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Region</label>
+                    <select
+                      className="w-full p-2 border rounded"
+                      value={bookingData.region}
+                      onChange={(e) => setBookingData({...bookingData, region: e.target.value})}
+                      required
+                    >
+                      <option value="">Select region</option>
+                      {regions.map(region => (
+                        <option key={region} value={region}>{region}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded"
+                  >
+                    Confirm Booking
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </>
+      )}
+
       {/* Fixed Book Tickets Button (appears on scroll) */}
       {isScrolled && (
         <div className="fixed top-0 left-0 right-0 bg-white shadow-md z-50 py-3 px-4 flex justify-between items-center">
           <h2 className="text-lg font-bold">{movie.title}</h2>
-          <button className="bg-yellow-500 hover:bg-yellow-600 text-black cursor-pointer font-bold py-2 px-6 rounded-md">
+          <button 
+            onClick={() => setShowBookingModal(true)}
+            className="bg-yellow-500 hover:bg-yellow-600 text-black cursor-pointer font-bold py-2 px-6 rounded-md"
+          >
             Book tickets
           </button>
         </div>
@@ -71,7 +157,10 @@ const MovieDetails = ({ movie }) => {
             </div>
 
             {/* Book Tickets Button */}
-            <button className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-md cursor-pointer">
+            <button 
+              onClick={() => setShowBookingModal(true)}
+              className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-md cursor-pointer"
+            >
               Book tickets
             </button>
           </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import defaultImage from '../../public/images/art/art1.jpeg'
+import defaultImage from '/images/art/art1.jpeg'
 
 const EventCard = ({ event }) => {
   return (

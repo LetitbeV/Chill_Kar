@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import MovieDetails from '../components/MovieDetails';
-import defaultPoster from '../../public/images/gaming/gaming1.webp';; // Default poster image
-import defaultBackdrop from '../../public/images/latest-drops/asteroid.gif'; // Default backdrop image
+// import defaultPoster from '../../public/images/gaming/gaming1.webp';; // Default poster image
+// import defaultBackdrop from '../../public/images/latest-drops/asteroid.gif'; // Default backdrop image
 
 import allEventsData from '../SampleData/AllEventsData.json'
-import recommendedMoviesData from '../SampleData/MoviesData.json'
+// import recommendedMoviesData from '../SampleData/MoviesData.json'
 
 const MovieDetailsPage = () => {
     const { movieId } = useParams();
@@ -16,7 +16,7 @@ const MovieDetailsPage = () => {
         const fetchMovieData = async () => {
             try {
                 setLoading(true);
-                
+
                 // Find the event with matching ID from allEventsData
                 const foundMovie = allEventsData.Events.find(
                     event => event.id === parseInt(movieId)

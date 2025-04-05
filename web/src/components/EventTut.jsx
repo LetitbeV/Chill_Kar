@@ -15,7 +15,6 @@ const EventTut = ({ movie }) => {
 
   const getData = async (imageCID, address) => {
     let result = await getImageFromPinata(imageCID);
-    console.log("result: ", result);
     if (!result) {
       console.log("no image");
       return null;
@@ -23,7 +22,6 @@ const EventTut = ({ movie }) => {
     setImage(result);
 
     result = await getDataByAddr(address, movie);
-    console.log("result:: ", result);
     setMovieData(result);
   };
 
