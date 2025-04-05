@@ -1,7 +1,9 @@
 package com.sks225.chillkar.model
 
 import android.net.Uri
+import android.os.Parcelable
 
+@kotlinx.parcelize.Parcelize
 data class Event(
     val name: String,
     val timeStamp: Long,
@@ -10,5 +12,5 @@ data class Event(
     val description: String,
     val category: EventCategory,
     val generalTicket: TicketInfo,
-    val vipTicket: TicketInfo
-)
+    val vipTicket: TicketInfo,
+) : Parcelable

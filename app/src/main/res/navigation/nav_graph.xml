@@ -30,7 +30,11 @@
     <fragment
         android:id="@+id/ticketDetailsFragment"
         android:name="com.sks225.chillkar.TicketDetailsFragment"
-        android:label="TicketDetailsFragment" />
+        android:label="TicketDetailsFragment" >
+        <argument
+            android:name="Event"
+            app:argType="com.sks225.chillkar.model.Event" />
+    </fragment>
     <fragment
         android:id="@+id/userProfileFragment"
         android:name="com.sks225.chillkar.UserProfileFragment"
