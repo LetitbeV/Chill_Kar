@@ -12,7 +12,11 @@ import com.sks225.chillkar.R
 import com.sks225.chillkar.formatEpochTime
 import com.sks225.chillkar.model.Event
 
-class TicketsVerticalAdapter(private val items: Array<Event>, private val context: Context) :
+class TicketsVerticalAdapter(
+    private val items: Array<Event>,
+    private val context: Context,
+    private val onClick: (Event) -> Unit = {}
+) :
     RecyclerView.Adapter<TicketsVerticalAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title: TextView = view.findViewById(R.id.ticket_title)
@@ -31,6 +35,10 @@ class TicketsVerticalAdapter(private val items: Array<Event>, private val contex
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.itemView.setOnClickListener {
+            onClick(items[position])
+        }
+
         holder.title.text = items[position].name
         holder.date.text = formatEpochTime(items[position].timeStamp)
         holder.location.text = items[position].location
@@ -38,7 +46,6 @@ class TicketsVerticalAdapter(private val items: Array<Event>, private val contex
             R.string.ticket_price,
             items[position].generalTicket.price
         )
-
         Glide.with(context).load(items[position].poster).into(holder.poster)
     }
 }

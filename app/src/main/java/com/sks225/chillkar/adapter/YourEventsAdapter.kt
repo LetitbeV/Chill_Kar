@@ -8,11 +8,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.sks225.chillkar.R
 import com.sks225.chillkar.formatEpochTime
 import com.sks225.chillkar.model.Event
 
-class YourEventsAdapter(private val eventsList: List<Event>, private val context: Context) :
+class YourEventsAdapter(
+    private val eventsList: List<Event>,
+    private val context: Context,
+    private val onItemClick: (Event) -> Unit
+) :
     RecyclerView.Adapter<YourEventsAdapter.EventViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -28,6 +33,12 @@ class YourEventsAdapter(private val eventsList: List<Event>, private val context
         Glide.with(context).load(event.poster).into(holder.ivEventPoster)
         holder.tvEventName.text = event.name
         holder.tvEventDate.text = formatEpochTime(event.timeStamp)
+        holder.linearProgress.progress = event.generalTicket.sold + event.vipTicket.sold
+        holder.linearProgress.max = event.generalTicket.total + event.generalTicket.total
+
+        holder.itemView.setOnClickListener {
+            onItemClick(event)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -38,5 +49,6 @@ class YourEventsAdapter(private val eventsList: List<Event>, private val context
         val ivEventPoster: ImageView = itemView.findViewById(R.id.iv_event_poster)
         val tvEventName: TextView = itemView.findViewById(R.id.tv_event_name)
         val tvEventDate: TextView = itemView.findViewById(R.id.tv_event_date)
+        val linearProgress: LinearProgressIndicator = itemView.findViewById(R.id.linear_progress)
     }
 }
