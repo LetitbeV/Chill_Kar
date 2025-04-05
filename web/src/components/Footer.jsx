@@ -111,7 +111,7 @@ const Footer = () => {
             </div>
 
             {/* Bottom Footer Section */}
-            <div className="border-t border-gray-800 mt-8 pt-8">
+            <div className="border-t border-gray-800 mt-8 pt-3">
                 <div className="container mx-auto px-4">
                     <div className="flex flex-col md:flex-row justify-between items-center">
                         {/* Copyright Text */}

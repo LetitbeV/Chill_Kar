@@ -21,6 +21,27 @@ const Navbar = () => {
   const handleSignUp = () => {
     navigate('/signup')
   }
+  
+  const handleConnectWallet = () => {
+    // Logic to connect wallet goes here
+    console.log('Connect Wallet clicked');
+    const {ethereum} = window;
+    if (ethereum && ethereum.isMetaMask) {
+      console.log('MetaMask is installed');
+      ethereum.request({ method: 'eth_requestAccounts' })
+        .then(accounts => {
+          console.log('Connected account:', accounts[0]);
+          // Handle successful connection here
+        })
+        .catch(error => {
+          console.error('Error connecting wallet:', error);
+          // Handle error here
+        });
+    } else {
+      console.error('MetaMask is not installed');
+      // Handle MetaMask not installed case here
+    }
+  }
 
 
 
@@ -62,13 +83,11 @@ const Navbar = () => {
             </div> */}
 
             {/* Sign In Button */}
-            <button onClick={handleSignUp} className="bg-yellow-500 cursor-pointer text-white rounded py-1 px-4 hover:bg-yellow-600 transition-colors">
-              Sign up
+            <button onClick={handleConnectWallet} className="bg-yellow-500 cursor-pointer text-white rounded py-1 px-4 hover:bg-yellow-600 transition-colors">
+             Connect Wallet
             </button>
             {/* Sign In Button */}
-            <button onClick={handleLogin} className="bg-yellow-500 cursor-pointer text-white rounded py-1 px-4 hover:bg-yellow-600 transition-colors">
-              Login
-            </button>
+
 
             {/* Hamburger Menu */}
             <button

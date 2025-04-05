@@ -215,7 +215,23 @@ const PostEvent = () => {
             <div>
               <label className="block text-gray-700 font-medium mb-2">
                 <Users className="inline-block mr-2 h-5 w-5" />
-                Total Tickets
+               VIP Tickets Count
+              </label>
+              <input
+                type="number"
+                name="ticketCount"
+                value={eventData.ticketCount}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
+                placeholder="Number of tickets"
+                min="1"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-gray-700 font-medium mb-2">
+                <Users className="inline-block mr-2 h-5 w-5" />
+               General Tickets Count
               </label>
               <input
                 type="number"
@@ -232,7 +248,7 @@ const PostEvent = () => {
             <div>
               <label className="block text-gray-700 font-medium mb-2">
                 {/* <span className="inline-block mr-2">$</span> */}
-                Ticket Price (in Micro-Ethereum)
+                VIP Ticket Price (in Micro-ETH)
               </label>
               <div className="relative">
                 <input
@@ -241,7 +257,29 @@ const PostEvent = () => {
                   value={eventData.ticketPrice}
                   onChange={handleChange}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
-                  placeholder="Price per ticket (in Micro-Ethereum)"
+                  placeholder="Price per ticket (in Micro-ETH)"
+                  min="0"
+                  step="0.01"
+                  required
+                />
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"></span>
+              </div>
+              <p className="text-xs text-gray-500 mt-1">Enter 0 for free events</p>
+            </div>
+
+            <div>
+              <label className="block text-gray-700 font-medium mb-2">
+                {/* <span className="inline-block mr-2">$</span> */}
+                General Ticket Price (in Micro-ETH)
+              </label>
+              <div className="relative">
+                <input
+                  type="number"
+                  name="ticketPrice"
+                  value={eventData.ticketPrice}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
+                  placeholder="Price per ticket (in Micro-ETH)"
                   min="0"
                   step="0.01"
                   required
@@ -257,7 +295,21 @@ const PostEvent = () => {
             <div>
               <label className="block text-gray-700 font-medium mb-2">
                 <Calendar className="inline-block mr-2 h-5 w-5" />
-                Event Date
+                Event Start Date
+              </label>
+              <input
+                type="datetime-local"
+                name="date"
+                value={eventData.date}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-gray-700 font-medium mb-2">
+                <Calendar className="inline-block mr-2 h-5 w-5" />
+               Ticket Sell Start Date
               </label>
               <input
                 type="datetime-local"
