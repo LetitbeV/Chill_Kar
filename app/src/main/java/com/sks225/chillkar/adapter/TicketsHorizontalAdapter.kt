@@ -5,8 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.chillkr.R
-import com.example.chillkr.models.TicketListItem
+import com.sks225.chillkar.R
+import com.sks225.chillkar.model.TicketListItem
 
 class TicketsHorizontalAdapter(private val items: Array<TicketListItem>) :
     RecyclerView.Adapter<TicketsHorizontalAdapter.ViewHolder>() {

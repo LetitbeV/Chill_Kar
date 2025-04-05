@@ -66,11 +66,14 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tv_my_tickets"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:layout_marginVertical="8dp"
+        android:clickable="true"
         android:drawablePadding="16dp"
+        android:focusable="true"
         android:gravity="center_vertical"
         android:text="@string/my_tickets"
         android:textSize="24sp"
