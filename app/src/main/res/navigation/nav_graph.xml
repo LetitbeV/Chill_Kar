@@ -64,12 +64,23 @@
     <fragment
         android:id="@+id/overallAnalyticsFragment"
         android:name="com.sks225.chillkar.OverallAnalyticsFragment"
-        android:label="OverallAnalyticsFragment" />
+        android:label="OverallAnalyticsFragment" >
+        <argument
+            android:name="OverallAnalytics"
+            app:argType="com.sks225.chillkar.model.OverallAnalytics" />
+    </fragment>
     <fragment
         android:id="@+id/eventAnalyticsFragment"
         android:name="com.sks225.chillkar.EventAnalyticsFragment"
         android:label="fragment_event_analytics"
-        tools:layout="@layout/fragment_event_analytics" />
+        tools:layout="@layout/fragment_event_analytics" >
+        <argument
+            android:name="EventAnalytics"
+            app:argType="com.sks225.chillkar.model.EventAnalytics" />
+        <argument
+            android:name="Event"
+            app:argType="com.sks225.chillkar.model.Event" />
+    </fragment>
     <fragment
         android:id="@+id/createEventFragment"
         android:name="com.sks225.chillkar.CreateEventFragment"
