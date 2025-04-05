@@ -4,7 +4,7 @@ import android.net.Uri
 
 data class Event(
     val name: String,
-    val timeStamp: String,
+    val timeStamp: Long,
     val poster: Uri,
     val location: String,
     val description: String,

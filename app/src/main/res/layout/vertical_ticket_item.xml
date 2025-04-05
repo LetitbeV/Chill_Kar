@@ -13,6 +13,7 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/ticket_thumbnail"
             android:layout_width="100dp"
             android:layout_height="120dp"
             android:contentDescription="@string/ticket_thumbnail"
@@ -25,6 +26,7 @@
             android:padding="4dp">
 
             <TextView
+                android:id="@+id/ticket_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
@@ -32,12 +34,14 @@
                 tools:text="Ticket Title" />
 
             <TextView
+                android:id="@+id/ticket_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                tools:text="♦ 100" />
+                tools:text="@string/ticket_price" />
 
             <TextView
+                android:id="@+id/ticket_location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="4dp"
@@ -46,6 +50,7 @@
                 tools:text="City Name, State" />
 
             <TextView
+                android:id="@+id/ticket_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="4dp"
