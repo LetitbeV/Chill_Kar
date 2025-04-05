@@ -1,5 +1,6 @@
 import { contractAddress, contractABI } from "../../contractDetails";
 import { ethers } from "ethers";
+import { saveMetaData } from "./pinataUtils";
 
 const createEvent = async (eventData) => {
   const { ethereum } = window;
@@ -16,14 +17,34 @@ const createEvent = async (eventData) => {
         signer
       );
 
+      let creatorAddr = await ethereum.request({method: "eth_requestAccounts",});
+
+      creatorAddr = creatorAddr[0];
+
       const {
+        title,
+        poster,
+        eventType,
         generalTickets,
-        vipTickets,
         generalPrice,
+        vipTickets,
         vipPrice,
+        genres,
         eventStartTime,
         sellStartTime,
+        venue,
+        description,
       } = eventData;
+
+      const metaData = {
+        title,
+        eventStartTime,
+        poster,
+        eventType,
+        genres,
+        venue,
+        description
+      }
 
       console.log("event data", eventData);
 
@@ -40,6 +61,9 @@ const createEvent = async (eventData) => {
       );
 
       await tx.wait();
+
+      const ipfsHash = await saveMetaData(metaData,creatorAddr);
+      await contract.setBandMetadataCID(ipfsHash);
       console.log("Event created successfully:", tx.hash);
     } catch (e) {
       console.log("Error interacting with the contract: ", e);

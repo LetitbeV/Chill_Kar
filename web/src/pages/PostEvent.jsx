@@ -10,7 +10,7 @@ import {
   X,
 } from "lucide-react";
 import createEvent from "../contractLogic/createEvent";
-import { uploadPicture } from "../contractLogic/pinataUtils";
+import { uploadFile } from "../contractLogic/pinataUtils";
 
 const PostEvent = () => {
   const [eventData, setEventData] = useState({
@@ -122,10 +122,10 @@ const PostEvent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Event Data:", eventData);
-    // const imageCID = await uploadPicture(eventData.poster.file);
-    // console.log("image: ", imageCID);
+    const imageCID = await uploadFile(eventData.poster.file);
+    console.log("image: ", imageCID);
+    eventData.poster = imageCID;
     await createEvent(eventData);
-    // Handle form submission logic here
   };
 
   const renderGenresSection = () => (

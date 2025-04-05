@@ -1,5 +1,6 @@
 import { ethers } from "ethers";
 import { contractAddress, contractABI } from "../../contractDetails";
+import { getFromPinata } from "./pinataUtils";
 
 const getEvents = async () => {
   const { ethereum } = window;
@@ -19,7 +20,13 @@ const getEvents = async () => {
       console.log("events: ", events);
       for (let i = 0; i < events.length; i++) {
         const dataCID = await contract.bandMetaDataCID(events[i].args[1]);
-        events[i].CID = dataCID;
+        const bandData = await getFromPinata(dataCID);
+
+        for (let e in bandData.events) {
+          if (e.eventStartTime == events[i].eventStartTime) {
+            events[i].CID = e.poster;
+          }
+        }
       }
       return events;
     } catch (e) {

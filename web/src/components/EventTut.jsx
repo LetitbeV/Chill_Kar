@@ -1,8 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Star } from "lucide-react";
-import defaultImage from "../../public/images/art/art2.jpeg";
-// import { getFromPinata } from "../contractLogic/pinataUtils";
+import { getFromPinata } from "../contractLogic/pinataUtils";
 
 const EventTut = ({ movie }) => {
   const navigate = useNavigate();
@@ -12,7 +11,9 @@ const EventTut = ({ movie }) => {
 
   const getImage = async (imageCID) => {
     const result = await getFromPinata(imageCID);
-    if (!result.ok) {
+    console.log(result)
+    if (!result) {
+      console.log("no image");
       return null;
     }
     return result;
@@ -27,7 +28,7 @@ const EventTut = ({ movie }) => {
       {/* Movie Poster */}
       <div className="rounded-lg overflow-hidden relative shadow-md ">
         <img
-          src={getImage(movie.CID) || defaultImage}
+          src={getImage(movie.CID)}
           alt={data.eventId.toString()}
           className="w-full h-80 object-cover"
         />
