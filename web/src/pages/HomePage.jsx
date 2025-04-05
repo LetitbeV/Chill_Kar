@@ -15,7 +15,7 @@ const Homepage = () => {
       {/* Recommended Events Section */}
       <ScrollableSection
         title="Recommended Events"
-        items={recommendedMovies}
+        items={allEventsData.Events.slice(-13,-3)}
         renderItem={(movie) => <MovieCard movie={movie} />}
         seeAllLink="/Movies"
         containerId="recommended-events"
