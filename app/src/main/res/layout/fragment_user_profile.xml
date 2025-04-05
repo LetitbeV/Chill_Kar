@@ -12,9 +12,11 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:title="Profile"
+            app:navigationIcon="@drawable/baseline_arrow_back_ios_24"
             app:titleCentered="true"
             app:titleTextAppearance="@style/BoldToolbarTitle" />
 
@@ -31,8 +33,8 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:importantForAccessibility="no"
             android:src="@drawable/baseline_account_circle_48" />
 
@@ -60,8 +62,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="middle"
+                android:textSize="16sp"
+                android:textColor="@color/content_grey"
                 android:maxLines="1"
-                tools:text="0xFD19a96b92ab67608a614c9070028FC0b9e84d91" />
+                android:text="0xFD19a96b92ab67608a614c9070028FC0b9e84d91" />
         </LinearLayout>
     </LinearLayout>
 

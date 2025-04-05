@@ -13,6 +13,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
@@ -21,25 +22,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="48dp"
+                android:clickable="true"
                 app:layout_collapseMode="parallax">
 
                 <TextView
                     android:id="@+id/tv_greeting"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:gravity="center_vertical"
                     android:padding="12dp"
-                    tools:text="Welcome, User"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     app:drawableEndCompat="@drawable/baseline_person_24"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Welcome, User" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cv_overall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
+                    android:clickable="true"
+                    android:focusable="true"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -57,8 +63,8 @@
                             android:layout_height="wrap_content"
                             android:paddingHorizontal="10dp"
                             android:paddingVertical="4dp"
-                            tools:text="Tickets Sold: 500"
-                            android:textSize="20sp" />
+                            android:textSize="20sp"
+                            tools:text="Tickets Sold: 500" />
 
                         <TextView
                             android:id="@+id/tv_revenue"
@@ -66,8 +72,8 @@
                             android:layout_height="wrap_content"
                             android:paddingHorizontal="10dp"
                             android:paddingVertical="4dp"
-                            tools:text="Total Revenue: $1000"
-                            android:textSize="20sp" />
+                            android:textSize="20sp"
+                            tools:text="Total Revenue: $1000" />
 
                         <com.github.mikephil.charting.charts.LineChart
                             android:id="@+id/line_chart"

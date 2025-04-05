@@ -22,7 +22,7 @@ class YourEventsAdapter(private val eventsList: List<Event>) :
 
     override fun onBindViewHolder(holder: YourEventsAdapter.EventViewHolder, position: Int) {
         val event = eventsList[position]
-        holder.ivEventPoster.setImageResource(event.poster)
+        //holder.ivEventPoster.setImageResource(event.poster)
         holder.tvEventName.text = event.name
         holder.tvEventDate.text = event.timeStamp
     }

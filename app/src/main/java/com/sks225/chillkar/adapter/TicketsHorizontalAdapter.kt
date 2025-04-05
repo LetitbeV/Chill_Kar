@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.sks225.chillkar.R
-import com.sks225.chillkar.model.TicketListItem
+import com.sks225.chillkar.model.Event
 
-class TicketsHorizontalAdapter(private val items: Array<TicketListItem>) :
+class TicketsHorizontalAdapter(private val items: Array<Event>) :
     RecyclerView.Adapter<TicketsHorizontalAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title: TextView = view.findViewById(R.id.ticket_title)
@@ -24,7 +24,7 @@ class TicketsHorizontalAdapter(private val items: Array<TicketListItem>) :
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.title.text = items[position].title
-        holder.date.text = items[position].date
+        holder.title.text = items[position].name
+        holder.date.text = items[position].timeStamp
     }
 }
