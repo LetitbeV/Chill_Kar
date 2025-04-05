@@ -1,63 +1,110 @@
-import React, { useState } from 'react';
-import { Calendar, MapPin, Users, Tag, Info, Theater, Upload, X } from 'lucide-react';
+import React, { useState } from "react";
+import {
+  Calendar,
+  MapPin,
+  Users,
+  Tag,
+  Info,
+  Theater,
+  Upload,
+  X,
+} from "lucide-react";
+import createEvent from "../contractLogic/createEvent";
+import { uploadPicture } from "../contractLogic/pinataUtils";
 
 const PostEvent = () => {
   const [eventData, setEventData] = useState({
-    title: '',
+    title: "",
     poster: null,
     // rating: 0.0,
     // votes:0,
-    eventType: '',
-    ticketCount: '',
-    ticketPrice: '',
+    eventType: "",
+    generalTickets: "",
+    generalPrice: "",
+    vipTickets: "",
+    vipPrice: "",
     genres: [],
-    date: '',
-    venue: '',
-    description: ''
+    eventStartTime: "",
+    sellStartTime: "",
+    venue: "",
+    description: "",
   });
 
   // Event type specific genres
   const genresByType = {
-    Movie: ['Action', 'Comedy', 'Drama', 'Horror', 'Sci-Fi', 'Romance', 'Thriller', 'Documentary'],
-    Sports: ['Cricket', 'Football', 'Basketball', 'Tennis', 'Athletics', 'Swimming', 'Boxing'],
-    Concert: ['Rock', 'Pop', 'Jazz', 'Classical', 'Electronic', 'Hip Hop', 'Folk'],
-    Other: ['Exhibition', 'Conference', 'Workshop', 'Food Festival', 'Cultural', 'Fashion', 'Tech']
+    Movie: [
+      "Action",
+      "Comedy",
+      "Drama",
+      "Horror",
+      "Sci-Fi",
+      "Romance",
+      "Thriller",
+      "Documentary",
+    ],
+    Sports: [
+      "Cricket",
+      "Football",
+      "Basketball",
+      "Tennis",
+      "Athletics",
+      "Swimming",
+      "Boxing",
+    ],
+    Concert: [
+      "Rock",
+      "Pop",
+      "Jazz",
+      "Classical",
+      "Electronic",
+      "Hip Hop",
+      "Folk",
+    ],
+    Other: [
+      "Exhibition",
+      "Conference",
+      "Workshop",
+      "Food Festival",
+      "Cultural",
+      "Fashion",
+      "Tech",
+    ],
   };
 
-  const eventTypes = ['Movie', 'Sports', 'Concert', 'Others'];
-  const ageRatingOptions = ['All Ages', '13+', '16+', '18+', '21+'];
+  const eventTypes = ["Movie", "Sports", "Concert", "Others"];
 
   // Update event type and reset genres when type changes
   const handleEventTypeChange = (e) => {
     const newType = e.target.value;
-    setEventData(prev => ({
+    setEventData((prev) => ({
       ...prev,
       eventType: newType,
-      genres: [] // Reset genres when type changes
+      genres: [], // Reset genres when type changes
     }));
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setEventData(prev => ({
+    setEventData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      if (file.size > 5242880) { // 5MB limit
-        alert('File size should be less than 5MB');
+      if (file.size > 5242880) {
+        // 5MB limit
+        alert("File size should be less than 5MB");
         return;
       }
-      setEventData(prev => ({
+      setEventData((prev) => ({
         ...prev,
         poster: {
           file,
-          preview: URL.createObjectURL(file)
-        }
+          preview: URL.createObjectURL(file),
+        },
       }));
     }
   };
@@ -72,9 +119,12 @@ const PostEvent = () => {
     return () => cleanupImageURL();
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Event Data:', eventData);
+    console.log("Event Data:", eventData);
+    // const imageCID = await uploadPicture(eventData.poster.file);
+    // console.log("image: ", imageCID);
+    await createEvent(eventData);
     // Handle form submission logic here
   };
 
@@ -94,8 +144,10 @@ const PostEvent = () => {
           required
         >
           <option value="">Select event type</option>
-          {eventTypes.map(type => (
-            <option key={type} value={type}>{type}</option>
+          {eventTypes.map((type) => (
+            <option key={type} value={type}>
+              {type}
+            </option>
           ))}
         </select>
       </div>
@@ -105,19 +157,25 @@ const PostEvent = () => {
         <div>
           <label className="block text-gray-700 font-medium mb-2">
             <Tag className="inline-block mr-2 h-5 w-5" />
-            {eventData.eventType === 'Movie' ? 'Genres' : 'Categories'}
+            {eventData.eventType === "Movie" ? "Genres" : "Categories"}
           </label>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-            {genresByType[eventData.eventType].map(genre => (
-              <label key={genre} className="flex items-center space-x-2 p-2 border rounded-lg hover:bg-yellow-50 cursor-pointer">
+            {genresByType[eventData.eventType].map((genre) => (
+              <label
+                key={genre}
+                className="flex items-center space-x-2 p-2 border rounded-lg hover:bg-yellow-50 cursor-pointer"
+              >
                 <input
                   type="checkbox"
                   checked={eventData.genres.includes(genre)}
                   onChange={(e) => {
                     const updatedGenres = e.target.checked
                       ? [...eventData.genres, genre]
-                      : eventData.genres.filter(g => g !== genre);
-                    setEventData(prev => ({ ...prev, genres: updatedGenres }));
+                      : eventData.genres.filter((g) => g !== genre);
+                    setEventData((prev) => ({
+                      ...prev,
+                      genres: updatedGenres,
+                    }));
                   }}
                   className="form-checkbox h-4 w-4 text-yellow-500 rounded focus:ring-yellow-400"
                 />
@@ -137,7 +195,7 @@ const PostEvent = () => {
         <Upload className="inline-block mr-2 h-5 w-5" />
         Event Poster
       </label>
-      
+
       <div className="relative">
         {eventData.poster ? (
           <div className="relative w-full h-48 bg-gray-100 rounded-lg overflow-hidden">
@@ -150,7 +208,7 @@ const PostEvent = () => {
               type="button"
               onClick={() => {
                 cleanupImageURL();
-                setEventData(prev => ({ ...prev, poster: null }));
+                setEventData((prev) => ({ ...prev, poster: null }));
               }}
               className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors"
             >
@@ -187,7 +245,10 @@ const PostEvent = () => {
           List Your Event
         </h1>
 
-        <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-lg p-6 space-y-6">
+        <form
+          onSubmit={handleSubmit}
+          className="bg-white rounded-xl shadow-lg p-6 space-y-6"
+        >
           {/* Event Title */}
           <div>
             <label className="block text-gray-700 font-medium mb-2">
@@ -215,12 +276,12 @@ const PostEvent = () => {
             <div>
               <label className="block text-gray-700 font-medium mb-2">
                 <Users className="inline-block mr-2 h-5 w-5" />
-               VIP Tickets Count
+                VIP Tickets Count
               </label>
               <input
                 type="number"
-                name="ticketCount"
-                value={eventData.ticketCount}
+                name="vipTickets"
+                value={eventData.vipTickets}
                 onChange={handleChange}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
                 placeholder="Number of tickets"
@@ -231,12 +292,12 @@ const PostEvent = () => {
             <div>
               <label className="block text-gray-700 font-medium mb-2">
                 <Users className="inline-block mr-2 h-5 w-5" />
-               General Tickets Count
+                General Tickets Count
               </label>
               <input
                 type="number"
-                name="ticketCount"
-                value={eventData.ticketCount}
+                name="generalTickets"
+                value={eventData.generalTickets}
                 onChange={handleChange}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
                 placeholder="Number of tickets"
@@ -253,8 +314,8 @@ const PostEvent = () => {
               <div className="relative">
                 <input
                   type="number"
-                  name="ticketPrice"
-                  value={eventData.ticketPrice}
+                  name="vipPrice"
+                  value={eventData.vipPrice}
                   onChange={handleChange}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
                   placeholder="Price per ticket (in Micro-ETH)"
@@ -264,7 +325,9 @@ const PostEvent = () => {
                 />
                 <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"></span>
               </div>
-              <p className="text-xs text-gray-500 mt-1">Enter 0 for free events</p>
+              <p className="text-xs text-gray-500 mt-1">
+                Enter 0 for free events
+              </p>
             </div>
 
             <div>
@@ -275,8 +338,8 @@ const PostEvent = () => {
               <div className="relative">
                 <input
                   type="number"
-                  name="ticketPrice"
-                  value={eventData.ticketPrice}
+                  name="generalPrice"
+                  value={eventData.generalPrice}
                   onChange={handleChange}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
                   placeholder="Price per ticket (in Micro-ETH)"
@@ -286,7 +349,9 @@ const PostEvent = () => {
                 />
                 <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"></span>
               </div>
-              <p className="text-xs text-gray-500 mt-1">Enter 0 for free events</p>
+              <p className="text-xs text-gray-500 mt-1">
+                Enter 0 for free events
+              </p>
             </div>
           </div>
 
@@ -299,8 +364,8 @@ const PostEvent = () => {
               </label>
               <input
                 type="datetime-local"
-                name="date"
-                value={eventData.date}
+                name="eventStartTime"
+                value={eventData.eventStartTime}
                 onChange={handleChange}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
                 required
@@ -309,12 +374,12 @@ const PostEvent = () => {
             <div>
               <label className="block text-gray-700 font-medium mb-2">
                 <Calendar className="inline-block mr-2 h-5 w-5" />
-               Ticket Sell Start Date
+                Ticket Sell Start Date
               </label>
               <input
                 type="datetime-local"
-                name="date"
-                value={eventData.date}
+                name="sellStartTime"
+                value={eventData.sellStartTime}
                 onChange={handleChange}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
                 required
