@@ -18,7 +18,7 @@ const MovieDetailsPage = () => {
                 setLoading(true);
                 
                 // Find the event with matching ID from allEventsData
-                const foundMovie = recommendedMoviesData.recommendedMovies.find(
+                const foundMovie = allEventsData.Events.find(
                     event => event.id === parseInt(movieId)
                 );
 

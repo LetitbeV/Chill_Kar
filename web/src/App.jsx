@@ -10,8 +10,6 @@ import Footer from "./components/Footer.jsx";
 import MovieDetailsPage from "./pages/MovieDetailsPage.jsx";
 import ListEvents from "./pages/ListEvents.jsx";
 import PostEvent from './pages/PostEvent.jsx'
-import Login from './pages/Login';
-import SignUp from './pages/SignUp';
 import EventsAnalyticsPage from "./pages/EventAnalyticsPage.jsx";
 
 const Layout = () => {
@@ -29,8 +27,6 @@ const Layout = () => {
           <Route path="/Events" element={<ListEvents />} />
           <Route path="/events-analytics" element={<EventsAnalyticsPage />} />
           <Route path="/PostEvent" element={<PostEvent />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
         </Routes>
       <Footer />
       </main>
