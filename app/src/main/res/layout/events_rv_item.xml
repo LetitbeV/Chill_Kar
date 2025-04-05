@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_event_poster"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:padding="10dp"
+            android:src="@color/cardview_dark_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_event_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp"
+            android:text="Event Name"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@id/iv_event_poster"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_event_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="8dp"
+            android:text="April 5, 2025"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/iv_event_poster"
+            app:layout_constraintTop_toBottomOf="@id/tv_event_name" />
+
+        <TextView
+            android:id="@+id/tv_ticekts_sold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="2dp"
+            android:text="Tickets Sold:"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@id/iv_event_poster"
+            app:layout_constraintTop_toBottomOf="@id/tv_event_date" />
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/linear_progress"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:paddingHorizontal="10dp"
+            android:progress="60"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_event_poster"
+            app:layout_constraintTop_toBottomOf="@id/tv_ticekts_sold" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/authFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.sks225.chillkar.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_ticketDetailsFragment"
+            app:destination="@id/ticketDetailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_userProfileFragment"
+            app:destination="@id/userProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.sks225.chillkar.SearchFragment"
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_searchFragment_to_ticketDetailsFragment2"
+            app:destination="@id/ticketDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ticketDetailsFragment"
+        android:name="com.sks225.chillkar.TicketDetailsFragment"
+        android:label="TicketDetailsFragment" />
+    <fragment
+        android:id="@+id/userProfileFragment"
+        android:name="com.sks225.chillkar.UserProfileFragment"
+        android:label="UserProfileFragment" >
+        <action
+            android:id="@+id/action_userProfileFragment_to_myTicketsFragment"
+            app:destination="@id/myTicketsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.sks225.chillkar.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_overallAnalyticsFragment"
+            app:destination="@id/overallAnalyticsFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_eventAnalyticsFragment"
+            app:destination="@id/eventAnalyticsFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_createEventFragment"
+            app:destination="@id/createEventFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/overallAnalyticsFragment"
+        android:name="com.sks225.chillkar.OverallAnalyticsFragment"
+        android:label="OverallAnalyticsFragment" />
+    <fragment
+        android:id="@+id/eventAnalyticsFragment"
+        android:name="com.sks225.chillkar.EventAnalyticsFragment"
+        android:label="fragment_event_analytics"
+        tools:layout="@layout/fragment_event_analytics" />
+    <fragment
+        android:id="@+id/createEventFragment"
+        android:name="com.sks225.chillkar.CreateEventFragment"
+        android:label="fragment_create_event"
+        tools:layout="@layout/fragment_create_event" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.sks225.chillkar.ProfileFragment"
+        android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="com.sks225.chillkar.AuthFragment"
+        android:label="AuthFragment" >
+        <action
+            android:id="@+id/action_authFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_authFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myTicketsFragment"
+        android:name="com.sks225.chillkar.MyTicketsFragment"
+        android:label="MyTicketsFragment" >
+        <action
+            android:id="@+id/action_myTicketsFragment_to_ticketDetailsFragment"
+            app:destination="@id/ticketDetailsFragment" />
+    </fragment>
+</navigation>
