@@ -5,7 +5,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class TicketInfo(
-    val type: TicketType,
     val price: Int,
     val sold: Int,
     val total: Int
