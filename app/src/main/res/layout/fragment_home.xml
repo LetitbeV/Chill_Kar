@@ -22,131 +22,172 @@
             android:layout_height="wrap_content" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cv_search"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="8dp"
-        android:layout_marginVertical="16dp"
-        app:strokeWidth="2dp">
+        android:layout_height="wrap_content">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawablePadding="8dp"
-            android:padding="8dp"
-            android:text="@string/search_your_events_here"
-            android:textSize="20sp"
-            app:drawableLeftCompat="@drawable/baseline_search_24" />
-    </com.google.android.material.card.MaterialCardView>
+            android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cv_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="16dp"
+                app:strokeWidth="2dp">
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:layout_weight="1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="8dp"
+                    android:padding="8dp"
+                    android:text="@string/search_your_events_here"
+                    android:textSize="20sp"
+                    app:drawableLeftCompat="@drawable/baseline_search_24" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tv_all_events"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="4dp"
+                        android:text="@string/all_events"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        app:drawableTint="@android:color/holo_green_dark"
+                        app:drawableTopCompat="@drawable/ic_event" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tv_sports"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="4dp"
+                        android:text="@string/sports"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        app:drawableTint="@android:color/holo_orange_dark"
+                        app:drawableTopCompat="@drawable/ic_sports" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tv_movies"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="4dp"
+                        android:text="@string/movies"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        app:drawableTint="@android:color/holo_purple"
+                        app:drawableTopCompat="@drawable/ic_movie" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tv_concerts"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="4dp"
+                        android:text="@string/concerts"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        app:drawableTint="@android:color/holo_red_light"
+                        app:drawableTopCompat="@drawable/ic_concert" />
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
 
             <TextView
+                style="@style/TextAppearance.Material3.HeadlineMedium"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="4dp"
-                android:text="@string/all_events"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                app:drawableTint="@android:color/holo_green_dark"
-                app:drawableTopCompat="@drawable/ic_event" />
-        </com.google.android.material.card.MaterialCardView>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:labelFor="@+id/rv_recommended"
+                android:paddingHorizontal="16dp"
+                android:text="@string/recommended"
+                android:textStyle="bold" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:layout_weight="1">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_recommended"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:orientation="horizontal"
+                android:scrollbars="horizontal" />
 
             <TextView
+                style="@style/TextAppearance.Material3.HeadlineMedium"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="4dp"
-                android:text="@string/sports"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                app:drawableTint="@android:color/holo_orange_dark"
-                app:drawableTopCompat="@drawable/ic_sports" />
-        </com.google.android.material.card.MaterialCardView>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:labelFor="@+id/rv_trending"
+                android:paddingHorizontal="16dp"
+                android:text="@string/trending"
+                android:textStyle="bold" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:layout_weight="1">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_trending"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:orientation="horizontal"
+                android:scrollbars="horizontal" />
 
             <TextView
+                style="@style/TextAppearance.Material3.HeadlineMedium"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="4dp"
-                android:text="@string/movies"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                app:drawableTint="@android:color/holo_purple"
-                app:drawableTopCompat="@drawable/ic_movie" />
-        </com.google.android.material.card.MaterialCardView>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:labelFor="@+id/rv_trending"
+                android:paddingHorizontal="16dp"
+                android:text="@string/explore"
+                android:textStyle="bold" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:layout_weight="1">
-
-            <TextView
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_explore"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="4dp"
-                android:text="@string/concerts"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                app:drawableTint="@android:color/holo_red_light"
-                app:drawableTopCompat="@drawable/ic_concert" />
-        </com.google.android.material.card.MaterialCardView>
-    </LinearLayout>
-
-    <TextView
-        style="@style/TextAppearance.Material3.HeadlineMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:labelFor="@+id/rv_recommended"
-        android:paddingHorizontal="16dp"
-        android:text="@string/recommended"
-        android:textStyle="bold" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_recommended"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:orientation="horizontal"
-        android:scrollbars="horizontal" />
-
-    <TextView
-        style="@style/TextAppearance.Material3.HeadlineMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:labelFor="@+id/rv_trending"
-        android:paddingHorizontal="16dp"
-        android:text="@string/trending"
-        android:textStyle="bold" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_trending"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:orientation="horizontal"
-        android:scrollbars="horizontal" />
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:orientation="horizontal"
+                android:scrollbars="horizontal" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>
