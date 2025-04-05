@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.sks225.chillkar.databinding.FragmentEventAnalyticsBinding
 
 
 class EventAnalyticsFragment : Fragment() {
     private lateinit var binding: FragmentEventAnalyticsBinding
+    private lateinit var navController: NavController
 
 
     override fun onCreateView(
@@ -17,6 +20,11 @@ class EventAnalyticsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentEventAnalyticsBinding.inflate(layoutInflater, container, false)
+        navController = findNavController()
+
+        binding.toolbar.setNavigationOnClickListener {
+            navController.navigateUp()
+        }
         return binding.root
     }
 

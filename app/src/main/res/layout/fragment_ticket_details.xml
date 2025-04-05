@@ -12,9 +12,11 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:title="@string/ticket_details"
+            app:navigationIcon="@drawable/baseline_arrow_back_ios_24"
             app:titleCentered="true"
             app:titleTextAppearance="@style/BoldToolbarTitle" />
 

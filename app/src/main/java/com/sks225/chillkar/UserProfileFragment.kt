@@ -23,6 +23,10 @@ class UserProfileFragment : Fragment() {
         binding.tvMyTickets.setOnClickListener {
             navController.navigate(R.id.action_userProfileFragment_to_myTicketsFragment)
         }
+
+        binding.toolbar.setNavigationOnClickListener {
+            navController.navigateUp()
+        }
         return binding.root
     }
 }
