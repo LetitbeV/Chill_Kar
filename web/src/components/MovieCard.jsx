@@ -1,11 +1,18 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Star } from 'lucide-react';
 import defaultImage from '../../public/images/art/art2.jpeg'
 
 
 const MovieCard = ({ movie }) => {
+  const navigate = useNavigate();
+  const handleCardClick = () =>{
+    // Handle card click event
+    // console.log(`Clicked on movie: ${movie.title}`);
+    navigate(`/movies/${movie.id}`);
+  }
   return (
-    <div className="ml-1 mr-1 w-56 relative group cursor-pointer">
+    <div className="w-56 relative group cursor-pointer transition-transform hover:scale-105" onClick={handleCardClick}>
       {/* Movie Poster */}
       <div className="rounded-lg overflow-hidden relative shadow-md ">
         <img 

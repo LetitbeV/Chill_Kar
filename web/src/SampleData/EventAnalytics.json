@@ -1,0 +1,96 @@
+{
+    "analyticsOverview": {
+      "totalEvents": 148,
+      "totalTicketsSold": 29200,
+      "totalRevenue": 5840000,
+      "averageTicketPrice": 200
+    },
+    
+    "monthlyTicketSales": [
+      { "name": "Jan", "tickets": 2400, "revenue": 480000 },
+      { "name": "Feb", "tickets": 3100, "revenue": 620000 },
+      { "name": "Mar", "tickets": 2800, "revenue": 560000 },
+      { "name": "Apr", "tickets": 3600, "revenue": 720000 },
+      { "name": "May", "tickets": 4200, "revenue": 840000 },
+      { "name": "Jun", "tickets": 3900, "revenue": 780000 },
+      { "name": "Jul", "tickets": 4400, "revenue": 880000 },
+      { "name": "Aug", "tickets": 4900, "revenue": 980000 },
+      { "name": "Sep", "tickets": 4300, "revenue": 860000 }
+    ],
+    
+    "ageDistribution": [
+      { "name": "18-24", "value": 2800 },
+      { "name": "25-34", "value": 4200 },
+      { "name": "35-44", "value": 3400 },
+      { "name": "45-54", "value": 1900 },
+      { "name": "55+", "value": 1200 }
+    ],
+    
+    "genderDistribution": [
+      { "name": "Male", "value": 7800 },
+      { "name": "Female", "value": 6200 },
+      { "name": "Non-binary", "value": 600 }
+    ],
+    
+    "locationData": [
+      { "name": "Mumbai", "value": 3500 },
+      { "name": "Delhi", "value": 2900 },
+      { "name": "Bangalore", "value": 2700 },
+      { "name": "Hyderabad", "value": 2100 },
+      { "name": "Chennai", "value": 1800 },
+      { "name": "Kolkata", "value": 1500 }
+    ],
+    
+    "eventCategoryData": [
+      { "name": "Comedy Shows", "value": 22, "revenue": 880000 },
+      { "name": "Live Music", "value": 35, "revenue": 1400000 },
+      { "name": "Theatre", "value": 18, "revenue": 720000 },
+      { "name": "Kids", "value": 12, "revenue": 480000 },
+      { "name": "Adventure & Fun", "value": 15, "revenue": 600000 },
+      { "name": "Concerts", "value": 26, "revenue": 1040000 },
+      { "name": "Live Sports", "value": 20, "revenue": 800000 }
+    ],
+    
+    "topPerformingEvents": [
+      {
+        "id": 1,
+        "name": "Rock Fusion 2025",
+        "category": "Live Music",
+        "ticketsSold": 1250,
+        "revenue": 312500,
+        "date": "2025-08-15"
+      },
+      {
+        "id": 2,
+        "name": "IPL Cricket Match",
+        "category": "Live Sports",
+        "ticketsSold": 1150,
+        "revenue": 345000,
+        "date": "2025-04-18"
+      },
+      {
+        "id": 3,
+        "name": "Laugh Factory Tour",
+        "category": "Comedy Shows",
+        "ticketsSold": 980,
+        "revenue": 196000,
+        "date": "2025-07-10"
+      },
+      {
+        "id": 4,
+        "name": "Symphony Night",
+        "category": "Concerts",
+        "ticketsSold": 920,
+        "revenue": 276000,
+        "date": "2025-09-05"
+      },
+      {
+        "id": 5,
+        "name": "Lion King Musical",
+        "category": "Theatre",
+        "ticketsSold": 890,
+        "revenue": 267000,
+        "date": "2025-06-22"
+      }
+    ]
+  }
