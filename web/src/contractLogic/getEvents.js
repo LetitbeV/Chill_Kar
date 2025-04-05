@@ -21,16 +21,17 @@ const getEvents = async () => {
       for (let i = 0; i < events.length; i++) {
         const dataCID = await contract.bandMetaDataCID(events[i].args[1]);
         const bandData = await getFromPinata(dataCID);
+        const e = bandData.events;
 
-        for (let e in bandData.events) {
-          if (e.eventStartTime == events[i].eventStartTime) {
-            events[i].CID = e.poster;
+        for (let j = 0; j < e.length; j++) {
+          if (e[j].eventTime == events[i].args.eventStartTime) {
+            events[i].CID = e[j].poster;
           }
         }
       }
       return events;
-    } catch (e) {
-      console.log("Error interacting with the contract: ", e);
+    } catch (error) {
+      console.log("Error interacting with the contract: ", error);
       throw new Error("Contract interaction failed");
     }
   } else {

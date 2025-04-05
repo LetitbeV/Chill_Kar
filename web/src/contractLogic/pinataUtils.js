@@ -60,15 +60,29 @@ export const uploadJsonToIPFS = async (jsonData) => {
   }
 };
 
+// Function to get JSON data from Pinata
 export const getFromPinata = async (ipfsHash) => {
   try {
+    console.log("hash: ", ipfsHash);
     const response = await fetch(
       `https://gateway.pinata.cloud/ipfs/${ipfsHash}`,
       { method: "GET" }
     );
     return response.json();
   } catch (error) {
-    console.error("Error fetching from Pinata:", error);
+    console.error("Error fetching JSON from Pinata:", error);
+    throw error;
+  }
+};
+
+// Function to get image from Pinata
+export const getImageFromPinata = async (ipfsHash) => {
+  try {
+    console.log("image hash: ", ipfsHash);
+    const imageUrl = `https://gateway.pinata.cloud/ipfs/${ipfsHash}`;
+    return imageUrl; // Returns the URL to the image that can be used in <img> tags
+  } catch (error) {
+    console.error("Error fetching image from Pinata:", error);
     throw error;
   }
 };

@@ -18,8 +18,8 @@ const Homepage = () => {
     async function getEventsList() {
       const events = await getEvents();
       setEventsData(events);
+      console.log("events", events)
     }
-
     getEventsList();
   }, []);
 

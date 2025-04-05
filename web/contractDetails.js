@@ -1,5 +1,5 @@
 // export const contractAddress = "0x1149d9fe8b5d18548f41e326ce53ea8456d6d364";
-export const contractAddress = "0x7354ADC05344067fa44387575fdf39DcD78177c5";
+export const contractAddress = "0x512b65dc475056c2C1D6aC0ac0a935D302eA94dd";
 export const SEPOLIA_ID = "0xaa36a7";
 
 export const contractABI = [

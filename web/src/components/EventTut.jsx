@@ -1,23 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Star } from "lucide-react";
-import { getFromPinata } from "../contractLogic/pinataUtils";
+import { getImageFromPinata } from "../contractLogic/pinataUtils";
+import defaultImage from "../../public/images/anime/anime1.jpeg";
 
 const EventTut = ({ movie }) => {
+  const [image, setImage] = useState(defaultImage);
   const navigate = useNavigate();
   const handleCardClick = () => {
     navigate(`/movies/${movie.id}`);
   };
 
   const getImage = async (imageCID) => {
-    const result = await getFromPinata(imageCID);
-    console.log(result)
+    const result = await getImageFromPinata(imageCID);
+    console.log("result: ", result);
     if (!result) {
       console.log("no image");
       return null;
     }
-    return result;
+    setImage(result);
   };
+
+  useEffect(() => {
+    getImage(movie.CID);
+  }, [movie.CID]);
 
   const data = movie.args;
   return (
@@ -28,7 +34,7 @@ const EventTut = ({ movie }) => {
       {/* Movie Poster */}
       <div className="rounded-lg overflow-hidden relative shadow-md ">
         <img
-          src={getImage(movie.CID)}
+          src={image}
           alt={data.eventId.toString()}
           className="w-full h-80 object-cover"
         />

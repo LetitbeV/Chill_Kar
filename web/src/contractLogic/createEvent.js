@@ -17,7 +17,9 @@ const createEvent = async (eventData) => {
         signer
       );
 
-      let creatorAddr = await ethereum.request({method: "eth_requestAccounts",});
+      let creatorAddr = await ethereum.request({
+        method: "eth_requestAccounts",
+      });
 
       creatorAddr = creatorAddr[0];
 
@@ -36,20 +38,20 @@ const createEvent = async (eventData) => {
         description,
       } = eventData;
 
-      const metaData = {
-        title,
-        eventStartTime,
-        poster,
-        eventType,
-        genres,
-        venue,
-        description
-      }
-
       console.log("event data", eventData);
 
       const eventTime = Math.floor(new Date(eventStartTime).getTime() / 1000);
       const sellTime = Math.floor(new Date(sellStartTime).getTime() / 1000);
+
+      const metaData = {
+        title,
+        eventTime,
+        poster,
+        eventType,
+        genres,
+        venue,
+        description,
+      };
 
       const tx = await contract.createEvent(
         generalTickets,
@@ -62,7 +64,7 @@ const createEvent = async (eventData) => {
 
       await tx.wait();
 
-      const ipfsHash = await saveMetaData(metaData,creatorAddr);
+      const ipfsHash = await saveMetaData(metaData, creatorAddr);
       await contract.setBandMetadataCID(ipfsHash);
       console.log("Event created successfully:", tx.hash);
     } catch (e) {
