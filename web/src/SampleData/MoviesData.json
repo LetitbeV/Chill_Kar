@@ -1,0 +1,351 @@
+{
+    "recommendedMovies": [
+        {
+            "id": 1,
+            "title": "Sikandar",
+            "poster": "../../public/images/anime/anime1.jpeg",
+            "rating": 6.7,
+            "votes": "8.6K",
+            "genres": ["Action", "Drama"]
+        },
+        {
+            "id": 2,
+            "title": "A Minecraft Movie",
+            "poster": "../../public/images/anime/anime2.gif",
+            "rating": 8.1,
+            "votes": "5.1K",
+            "genres": ["Action", "Animation", "Comedy"]
+        },
+        {
+            "id": 3,
+            "title": "Chhaava",
+            "poster": "../../public/images/anime/anime7.gif",
+            "rating": 9.0,
+            "votes": "34.7K",
+            "genres": ["Action", "Drama", "Historical"]
+        },
+        {
+            "id": 4,
+            "title": "LZ: Empuraan",
+            "poster": "../../public/images/anime/anime4.png",
+            "rating": 8.1,
+            "votes": "42.1K",
+            "genres": ["Action", "Crime", "Thriller"]
+        },
+        {
+            "id": 5,
+            "title": "The Diplomat",
+            "poster": "../../public/images/anime/anime5.gif",
+            "rating": 8.4,
+            "votes": "5.0K",
+            "genres": ["Action", "Thriller"]
+        },
+        {
+            "id": 6,
+            "title": "Fighter",
+            "poster": "../../public/images/anime/anime6.webp",
+            "rating": 7.8,
+            "votes": "12.3K",
+            "genres": ["Action", "Drama"]
+        },
+        {
+            "id": 7,
+            "title": "The Hunger Games",
+            "poster": "../../public/images/anime/anime3.jpeg",
+            "rating": 8.0,
+            "votes": "9.0K",
+            "genres": ["Action", "Adventure", "Sci-Fi"]
+        },
+        {
+            "id": 8,
+            "title": "Inception",
+            "poster": "../../public/images/art/art1.jpeg",
+            "rating": 8.8,
+            "votes": "23.5K",
+            "genres": ["Sci-Fi", "Action", "Thriller"]
+        },
+        {
+            "id": 9,
+            "title": "The Dark Knight",
+            "poster": "../../public/images/art/art2.jpeg",
+            "rating": 9.0,
+            "votes": "45.2K",
+            "genres": ["Action", "Crime", "Drama"]
+        },
+        {
+            "id": 10,
+            "title": "Oppenheimer",
+            "poster": "../../public/images/art/art3.jpeg",
+            "rating": 8.9,
+            "votes": "18.7K",
+            "genres": ["Biography", "Drama", "History"]
+        },
+        {
+            "id": 11,
+            "title": "Avatar: Way of Water",
+            "poster": "../../public/images/art/art4.webp",
+            "rating": 8.5,
+            "votes": "32.1K",
+            "genres": ["Sci-Fi", "Adventure", "Fantasy"]
+        },
+        {
+            "id": 12,
+            "title": "Dune",
+            "poster": "../../public/images/cars/cars1.gif",
+            "rating": 8.7,
+            "votes": "28.3K",
+            "genres": ["Sci-Fi", "Adventure", "Drama"]
+        },
+        {
+            "id": 13,
+            "title": "Top Gun: Maverick",
+            "poster": "../../public/images/cars/cars2.webp",
+            "rating": 8.3,
+            "votes": "25.9K",
+            "genres": ["Action", "Drama"]
+        },
+        {
+            "id": 14,
+            "title": "The Matrix",
+            "poster": "../../public/images/cars/cars3.jpeg",
+            "rating": 8.7,
+            "votes": "39.4K",
+            "genres": ["Sci-Fi", "Action"]
+        },
+        {
+            "id": 15,
+            "title": "Interstellar",
+            "poster": "../../public/images/cars/cars4.jpeg",
+            "rating": 8.9,
+            "votes": "41.2K",
+            "genres": ["Sci-Fi", "Adventure", "Drama"]
+        },
+        {
+            "id": 16,
+            "title": "Blade Runner 2049",
+            "poster": "/images/anime/anime1.jpeg",
+            "rating": 8.6,
+            "votes": "35.8K",
+            "genres": ["Sci-Fi", "Drama", "Mystery"]
+        },
+        {
+            "id": 17,
+            "title": "The Grand Budapest Hotel",
+            "poster": "../../public/images/anime/anime2.gif",
+            "rating": 8.4,
+            "votes": "27.3K",
+            "genres": ["Comedy", "Adventure", "Drama"]
+        },
+        {
+            "id": 18,
+            "title": "Mad Max: Fury Road",
+            "poster": "../../public/images/anime/anime3.jpeg",
+            "rating": 8.8,
+            "votes": "38.9K",
+            "genres": ["Action", "Adventure", "Sci-Fi"]
+        },
+        {
+            "id": 19,
+            "title": "Everything Everywhere All at Once",
+            "poster": "../../public/images/anime/anime4.png",
+            "rating": 8.9,
+            "votes": "31.2K",
+            "genres": ["Action", "Adventure", "Comedy"]
+        },
+        {
+            "id": 20,
+            "title": "Arrival",
+            "poster": "../../public/images/anime/anime5.gif",
+            "rating": 8.5,
+            "votes": "29.7K",
+            "genres": ["Sci-Fi", "Drama", "Mystery"]
+        },
+        {
+            "id": 21,
+            "title": "Parasite",
+            "poster": "../../public/images/anime/anime6.webp",
+            "rating": 9.2,
+            "votes": "44.5K",
+            "genres": ["Drama", "Thriller"]
+        },
+        {
+            "id": 22,
+            "title": "The French Dispatch",
+            "poster": "../../public/images/anime/anime7.gif",
+            "rating": 8.2,
+            "votes": "21.8K",
+            "genres": ["Comedy", "Drama", "Romance"]
+        },
+        {
+            "id": 23,
+            "title": "Dune: Part Two",
+            "poster": "../../public/images/anime/anime8.jpg",
+            "rating": 8.9,
+            "votes": "25.6K",
+            "genres": ["Sci-Fi", "Adventure", "Drama"]
+        },
+        {
+            "id": 24,
+            "title": "The Power of the Dog",
+            "poster": "../../public/images/anime/anime9.webp",
+            "rating": 8.3,
+            "votes": "19.4K",
+            "genres": ["Drama", "Western"]
+        },
+        {
+            "id": 25,
+            "title": "Poor Things",
+            "poster": "../../public/images/art/art1.jpeg",
+            "rating": 8.7,
+            "votes": "22.1K",
+            "genres": ["Comedy", "Drama", "Romance"]
+        },
+        {
+            "id": 26,
+            "title": "Past Lives",
+            "poster": "../../public/images/art/art2.jpeg",
+            "rating": 8.8,
+            "votes": "20.3K",
+            "genres": ["Drama", "Romance"]
+        },
+        {
+            "id": 27,
+            "title": "The Killer",
+            "poster": "../../public/images/art/art3.jpeg",
+            "rating": 8.4,
+            "votes": "18.9K",
+            "genres": ["Action", "Crime", "Drama"]
+        },
+        {
+            "id": 28,
+            "title": "Killers of the Flower Moon",
+            "poster": "../../public/images/art/art4.webp",
+            "rating": 8.9,
+            "votes": "33.7K",
+            "genres": ["Crime", "Drama", "History"]
+        },
+        {
+            "id": 29,
+            "title": "Napoleon",
+            "poster": "../../public/images/cars/cars1.gif",
+            "rating": 8.5,
+            "votes": "24.6K",
+            "genres": ["Action", "Biography", "Drama"]
+        },
+        {
+            "id": 30,
+            "title": "The Zone of Interest",
+            "poster": "../../public/images/cars/cars2.webp",
+            "rating": 8.6,
+            "votes": "17.8K",
+            "genres": ["Drama", "History", "War"]
+        }
+    ],
+    "TrendingGenres": [
+        {
+            "id": 1,
+            "title": "Comedy Shows",
+            "poster": "../../public/images/city/city.webp",
+            "eventCount": 140,
+            "color": "bg-purple-600"
+        },
+        {
+            "id": 2,
+            "title": "Amusement Park",
+            "poster": "../../public/images/city/city1.webp",
+            "eventCount": 20,
+            "color": "bg-blue-400"
+        },
+        {
+            "id": 3,
+            "title": "Theatre Shows",
+            "poster": "../../public/images/city/city2.webp",
+            "eventCount": 170,
+            "color": "bg-blue-700"
+        },
+        {
+            "id": 4,
+            "title": "Kids",
+            "poster": "../../public/images/city/city3.webp",
+            "eventCount": 30,
+            "color": "bg-blue-400"
+        },
+        {
+            "id": 5,
+            "title": "Adventure & Fun",
+            "poster": "../../public/images/city/city4.gif",
+            "eventCount": 60,
+            "color": "bg-teal-500"
+        },
+        {
+            "id": 6,
+            "title": "Concerts",
+            "poster": "../../public/images/city/city5.jpeg",
+            "eventCount": 100,
+            "color": "bg-red-500"
+        },
+        {
+            "id": 7,
+            "title": "Live Sports",
+            "poster": "../../public/images/anime/anime8.jpg",
+            "eventCount": 200,
+            "color": "bg-yellow-500"
+        },
+        {
+            "id": 8,
+            "title": "Music Festivals",
+            "poster": "../../public/images/anime/anime9.webp",
+            "eventCount": 85,
+            "color": "bg-pink-500"
+        },
+        {
+            "id": 9,
+            "title": "Art Galleries",
+            "poster": "../../public/images/art/hero.jpeg",
+            "eventCount": 45,
+            "color": "bg-indigo-500"
+        },
+        {
+            "id": 10,
+            "title": "Food Festivals",
+            "poster": "../../public/images/cars/hero.png",
+            "eventCount": 75,
+            "color": "bg-orange-500"
+        },
+        {
+            "id": 11,
+            "title": "Gaming Tournaments",
+            "poster": "../../public/images/cars/cars5.jpeg",
+            "eventCount": 120,
+            "color": "bg-purple-400"
+        },
+        {
+            "id": 12,
+            "title": "Tech Conferences",
+            "poster": "../../public/images/cars/cars6.jpeg",
+            "eventCount": 90,
+            "color": "bg-blue-600"
+        },
+        {
+            "id": 13,
+            "title": "Dance Shows",
+            "poster": "../../public/images/city/hero.jpeg",
+            "eventCount": 65,
+            "color": "bg-pink-600"
+        },
+        {
+            "id": 14,
+            "title": "Film Festivals",
+            "poster": "../../public/images/anime/hero.jpeg",
+            "eventCount": 40,
+            "color": "bg-red-600"
+        },
+        {
+            "id": 15,
+            "title": "Cultural Events",
+            "poster": "../../public/images/city/city.webp",
+            "eventCount": 110,
+            "color": "bg-green-600"
+        }
+    ]
+}
