@@ -13,22 +13,23 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
+        android:fontFamily="@font/nunito_bold"
         android:gravity="center_vertical"
         android:padding="12dp"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:drawableEndCompat="@drawable/baseline_person_24"
+        app:drawableEndCompat="@drawable/baseline_account_circle_48"
         tools:text="Welcome, User" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_overall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:clickable="true"
         android:focusable="true"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="10dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,27 +37,78 @@
         app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
         <LinearLayout
+            android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_ticekts_sold"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="4dp"
-                android:textSize="20sp"
-                tools:text="Tickets Sold: 500" />
+                android:gravity="center"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_revenue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="4dp"
-                android:textSize="20sp"
-                tools:text="Total Revenue: $1000" />
+                <LinearLayout
+                    android:padding="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_ticekts_sold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="4dp"
+                        android:textSize="20sp"
+                        tools:text="500" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito_light"
+                        android:paddingHorizontal="10dp"
+                        android:textSize="16sp"
+                        android:text="Tickets Sold" />
+
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:padding="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_revenue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="4dp"
+                        android:textSize="20sp"
+                        tools:text="$ 1000" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito_light"
+                        android:paddingHorizontal="10dp"
+                        android:textSize="16sp"
+                        android:text="Revenue" />
+
+                </LinearLayout>
+            </LinearLayout>
 
             <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/line_chart"
@@ -73,9 +125,10 @@
         android:clickable="true"
         android:focusable="true"
         android:padding="10dp"
+        android:gravity="center_vertical"
         android:text="@string/your_events"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:textSize="20sp"
+        android:fontFamily="@font/nunito_bold"
         app:drawableEndCompat="@drawable/baseline_navigate_next_24" />
 
     <FrameLayout

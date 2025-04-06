@@ -1,5 +1,6 @@
 package com.sks225.chillkar
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,9 +20,11 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.sks225.chillkar.databinding.FragmentEventAnalyticsBinding
 import com.sks225.chillkar.model.EventAnalytics
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
@@ -71,29 +74,24 @@ class EventAnalyticsFragment : Fragment() {
     private fun initializeViews(eventAnalytics: EventAnalytics) {
         val ticketsSold = eventAnalytics.ticketsSold
         val maxTickets = eventAnalytics.maxTickets
-        val revenue = ticketsSold * 100  // Assuming each ticket = $100
+        val revenue = ticketsSold * 100
 
-        // Set summary texts
-        binding.tvSummary.text = "$ticketsSold of $maxTickets tickets sold"
-        binding.tvRevenue.text = "Revenue: $$revenue"
+        binding.tvSales.text = "$maxTickets-$ticketsSold"
+        binding.tvRevenue.text = "$ $revenue"
         binding.progressCircular.progress = ticketsSold
         binding.progressCircular.max = maxTickets
 
-        // Line chart setup for daily sales
         lineChart = binding.lineChart
-        setupLineChart(eventAnalytics)
+        setupDailySalesChart(eventAnalytics.dailySales)
 
-        // Spinner setup
         val items = listOf("Age", "Gender")
         spinnerAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, items)
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinner.adapter = spinnerAdapter
 
-        // Bar chart setup
         barChart = binding.barChart
         setupBarChart(eventAnalytics, "Age")  // Default view
 
-        // Spinner selection listener
         binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
                 val selected = parent.getItemAtPosition(pos).toString()
@@ -104,43 +102,63 @@ class EventAnalyticsFragment : Fragment() {
         }
     }
 
-    private fun setupLineChart(eventAnalytics: EventAnalytics) {
-        val entries = mutableListOf<Entry>()
-        val labels = mutableListOf<String>()
+    private fun setupDailySalesChart(dailySales: Map<String, Int>) {
+        val sortedSales = dailySales.toList().sortedBy { it.first }
 
-        val sortedSales = eventAnalytics.dailySales.entries.sortedBy { it.key }
-
-        sortedSales.forEachIndexed { index, entry ->
-            entries.add(Entry(index.toFloat(), entry.value.toFloat()))
-            labels.add(entry.key)
+        val entries = sortedSales.mapIndexed { index, pair ->
+            Entry(index.toFloat(), pair.second.toFloat())
         }
 
-        val dataSet = LineDataSet(entries, "Tickets Sold")
-        dataSet.color = resources.getColor(R.color.black, null)
-        dataSet.valueTextSize = 12f
-        dataSet.lineWidth = 2f
-        dataSet.circleRadius = 4f
-        dataSet.setDrawValues(false)
+        val minY = (sortedSales.minOfOrNull { it.second } ?: 0) - 200
+        val maxY = (sortedSales.maxOfOrNull { it.second } ?: 0) + 200
 
-        val data = LineData(dataSet)
-        lineChart.data = data
-        lineChart.description.isEnabled = false
-        lineChart.axisRight.isEnabled = false
-        lineChart.setTouchEnabled(false)
+        val dataSet = LineDataSet(entries, "Overall Daily Sales").apply {
+            color = Color.BLUE
+            valueTextSize = 12f
+            setDrawCircles(true)
+            setDrawFilled(false)
+            lineWidth = 3f
+        }
 
-        // Y axis auto scaling
-        lineChart.axisLeft.axisMinimum = 0f
-        lineChart.axisLeft.granularity = 1f
-        lineChart.axisLeft.setDrawGridLines(false)
+        val calendar = Calendar.getInstance()
+        val dateFormat = SimpleDateFormat("MMMM, d", Locale.getDefault())
+        val weekDates = (0..6).map {
+            calendar.apply { add(Calendar.DAY_OF_YEAR, it) }
+            dateFormat.format(calendar.time)
+        }
 
-        // X axis formatting
-        lineChart.xAxis.valueFormatter = IndexAxisValueFormatter(labels)
-        lineChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
-        lineChart.xAxis.setDrawGridLines(false)
-        lineChart.xAxis.granularity = 1f
-        lineChart.xAxis.labelRotationAngle = -45f
+        binding.lineChart.apply {
+            data = LineData(dataSet)
 
-        lineChart.invalidate()
+            xAxis.apply {
+                valueFormatter = object : ValueFormatter() {
+                    override fun getFormattedValue(value: Float): String {
+                        val index = value.toInt()
+                        return if (index in weekDates.indices) {
+                            weekDates[index]
+                        } else {
+                            ""
+                        }
+                    }
+                }
+                granularity = 1f
+                position = XAxis.XAxisPosition.BOTTOM
+                setDrawGridLines(false)
+            }
+
+            axisLeft.apply {
+                axisMinimum = minY.toFloat()
+                axisMaximum = maxY.toFloat()
+                granularity = 50f
+            }
+            axisRight.isEnabled = false
+
+            setTouchEnabled(false)
+            setPinchZoom(false)
+            description.isEnabled = false
+            animateX(100)
+            invalidate()
+        }
     }
 
     private fun setupBarChart(eventAnalytics: EventAnalytics, type: String) {

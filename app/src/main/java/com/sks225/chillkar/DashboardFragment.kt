@@ -15,6 +15,7 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.sks225.chillkar.adapter.YourEventsAdapter
 import com.sks225.chillkar.databinding.FragmentDashboardBinding
 import com.sks225.chillkar.model.Event
@@ -24,14 +25,15 @@ import com.sks225.chillkar.model.Gender
 import com.sks225.chillkar.model.OverallAnalytics
 import com.sks225.chillkar.samples.eventAnalyticsList
 import com.sks225.chillkar.samples.sampleEvents
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class DashboardFragment : Fragment() {
     private lateinit var binding: FragmentDashboardBinding
     private lateinit var navController: NavController
-    private lateinit var chart: LineChart
     private var cvOverallVisibility: Boolean = true
     private val userName: String = "User Name"
-
     private lateinit var eventAnalytics: Map<Int, EventAnalytics>
     private lateinit var overallAnalytics: OverallAnalytics
     private lateinit var eventsList: List<Event>
@@ -43,23 +45,17 @@ class DashboardFragment : Fragment() {
         binding = FragmentDashboardBinding.inflate(inflater, container, false)
         navController = findNavController()
 
-        // Sample data
+        //Sample Data
         eventAnalytics = eventAnalyticsList
         eventsList = sampleEvents
         overallAnalytics = generateOverallAnalytics(eventAnalytics)
 
         binding.tvGreeting.text = "Welcome, $userName"
-
-        val totalRevenue = overallAnalytics.totalRevenue
-        val totalSales = overallAnalytics.ticketsSold
-        binding.tvRevenue.text = "Revenue: $$totalRevenue"
-        binding.tvTicektsSold.text = "Tickets Sold: $totalSales"
+        binding.tvRevenue.text = "$ ${overallAnalytics.totalRevenue}"
+        binding.tvTicektsSold.text = "${overallAnalytics.ticketsSold}"
 
         binding.cvOverall.setOnClickListener {
-            val action =
-                DashboardFragmentDirections.actionDashboardFragmentToOverallAnalyticsFragment(
-                    overallAnalytics
-                )
+            val action = DashboardFragmentDirections.actionDashboardFragmentToOverallAnalyticsFragment(overallAnalytics)
             navController.navigate(action)
         }
 
@@ -79,10 +75,7 @@ class DashboardFragment : Fragment() {
         }
 
         binding.rvYourEvents.adapter = YourEventsAdapter(eventsList, requireContext()) { event ->
-            val action =
-                DashboardFragmentDirections.actionDashboardFragmentToEventAnalyticsFragment(
-                    eventAnalytics[event.eventId]!!, event
-                )
+            val action = DashboardFragmentDirections.actionDashboardFragmentToEventAnalyticsFragment(eventAnalytics[event.eventId]!!, event)
             navController.navigate(action)
         }
 
@@ -93,7 +86,6 @@ class DashboardFragment : Fragment() {
             navController.navigate(R.id.action_dashboardFragment_to_createEventFragment)
         }
 
-        chart = binding.lineChart
         setupOverallLineChart(overallAnalytics.dailySales)
 
         return binding.root
@@ -106,29 +98,60 @@ class DashboardFragment : Fragment() {
             Entry(index.toFloat(), pair.second.toFloat())
         }
 
-        val labels = sortedSales.map { it.first }
+        // Calculate min and max values for Y-axis
+        val minY = (sortedSales.minOfOrNull { it.second } ?: 0) - 200
+        val maxY = (sortedSales.maxOfOrNull { it.second } ?: 0) + 200
 
         val dataSet = LineDataSet(entries, "Overall Daily Sales").apply {
-            color = Color.MAGENTA
+            color = Color.BLUE
             valueTextSize = 12f
             setDrawCircles(true)
-            setDrawFilled(true)
-            fillColor = Color.LTGRAY
+            setDrawFilled(false)
+            lineWidth = 3f // Thicker line
         }
 
-        chart.apply {
+        // Generate dates for the current week
+        val calendar = Calendar.getInstance()
+        val dateFormat = SimpleDateFormat("MMMM, d", Locale.getDefault())
+        val weekDates = (0..6).map {
+            calendar.apply { add(Calendar.DAY_OF_YEAR, it) }
+            dateFormat.format(calendar.time)
+        }
+
+        binding.lineChart.apply {
             data = LineData(dataSet)
+
+            // X-Axis Formatting for the whole week
             xAxis.apply {
-                valueFormatter = IndexAxisValueFormatter(labels)
+                valueFormatter = object : ValueFormatter() {
+                    override fun getFormattedValue(value: Float): String {
+                        val index = value.toInt()
+                        return if (index in weekDates.indices) {
+                            weekDates[index]
+                        } else {
+                            ""
+                        }
+                    }
+                }
                 granularity = 1f
                 position = XAxis.XAxisPosition.BOTTOM
-                labelRotationAngle = -45f
                 setDrawGridLines(false)
+                //labelRotationAngle = -45f // Optional: Rotates labels for better spacing
             }
-            axisLeft.axisMinimum = 0f
+
+            // Y-Axis adjustments
+            axisLeft.apply {
+                axisMinimum = minY.toFloat()
+                axisMaximum = maxY.toFloat()
+                granularity = 50f // Adjust granularity as needed
+            }
             axisRight.isEnabled = false
-            description.text = "Total Tickets Sold Per Day"
-            animateX(1000)
+
+            // Other chart properties
+            setTouchEnabled(false)
+            setPinchZoom(false)
+            description.isEnabled = false
+            animateX(100)
             invalidate()
         }
     }
