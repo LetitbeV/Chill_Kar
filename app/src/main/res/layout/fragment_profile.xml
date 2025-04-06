@@ -36,10 +36,11 @@
 
 
     <TextView
-        style="@style/TextAppearance.Material3.HeadlineMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
+        android:textSize="28sp"
+        android:fontFamily="@font/nunito_bold"
         android:text="User Name"
         android:textAlignment="center"
         android:textStyle="bold" />
@@ -48,7 +49,8 @@
         style="@style/TextAppearance.Material3.BodyLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:padding="8dp"
+        android:fontFamily="@font/nunito_regular"
         android:text="Metamask_Address:"
         android:textAlignment="center" />
 
@@ -58,9 +60,10 @@
         android:layout_height="wrap_content"
         android:ellipsize="middle"
         android:maxLines="1"
-        android:padding="0dp"
+        android:fontFamily="@font/nunito_extralight"
+        android:paddingHorizontal="4dp"
         android:textAlignment="center"
-        tools:text="0xFD19a96b92ab67608a614c9070028FC0b9e84d91" />
+        android:text="0xFD19a96b92ab67608a614c9070028FC0b9e84d91" />
 
     <Space
         android:layout_width="match_parent"
@@ -71,10 +74,11 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:layout_marginVertical="8dp"
+        android:fontFamily="@font/nunito_regular"
         android:drawablePadding="16dp"
         android:gravity="center_vertical"
         android:text="Privacy Policy"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:drawableLeftCompat="@drawable/baseline_privacy_tip_24" />
 
     <TextView
@@ -83,9 +87,10 @@
         android:layout_margin="8dp"
         android:layout_marginVertical="8dp"
         android:drawablePadding="16dp"
+        android:fontFamily="@font/nunito_regular"
         android:gravity="center_vertical"
         android:text="Edit Profile"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:drawableLeftCompat="@drawable/baseline_edit_24" />
 
     <TextView
@@ -94,9 +99,10 @@
         android:layout_margin="8dp"
         android:layout_marginVertical="8dp"
         android:drawablePadding="16dp"
+        android:fontFamily="@font/nunito_regular"
         android:gravity="center_vertical"
         android:text="Logout"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:drawableLeftCompat="@drawable/baseline_logout_24" />
 
     <Space
@@ -108,8 +114,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:fontFamily="@font/nunito_bold"
         android:padding="10dp"
-        android:text="Made with ❤️ by Chill_Kar"
+        android:text="Made with ❤️ by Team Chill_Kar"
         android:textSize="16sp" />
 
 </LinearLayout>
