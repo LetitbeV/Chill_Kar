@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">ChillKar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="user_profile">User Profile</string>
+    <string name="create_event">Create Event</string>
+
+    <string name="profile">Profile</string>
+    <string name="home">Home</string>
+    <string name="city">City</string>
+    <string name="search_your_events_here">Search Your Events Here</string>
+    <string name="select_city">Select City</string>
+    <string name="all_events">All Events</string>
+    <string name="concerts">Concerts</string>
+    <string name="movies">Movies</string>
+    <string name="sports">Sports</string>
+    <string name="welcome_user">Welcome User</string>
+    <string name="recommended">Recommended</string>
+    <string name="trending">Trending</string>
+    <string name="metamask_address">MetaMask Address</string>
+    <string name="first_last">First Last</string>
+    <string name="my_tickets">My Tickets</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="logout">Logout</string>
+    <string name="ticket_thumbnail">Ticket Thumbnail</string>
+    <string name="no_item_found">No Item Found</string>
+    <string name="ticket_details">Ticket Details</string>
+    <string name="description">Description:</string>
+    <string name="buy">Buy</string>
+    <string name="sell">Sell (%1$d)</string>
+    <string name="ticket_price">♦ %1$d</string>
+    <string name="explore">Explore</string>
+    <string name="vip_price">VIP: ♦%1$d</string>
+    <string name="general_price">General: ♦%1$d</string>
+    <string name="your_events">Your Events</string>
+    <string name="infura_api_key">dd705bdd6baa496e93d70d7826f8585c</string>
+</resources>
