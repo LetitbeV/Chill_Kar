@@ -9,10 +9,11 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.github.mikephil.charting.charts.HorizontalBarChart
-import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
@@ -24,51 +25,43 @@ import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.sks225.chillkar.databinding.FragmentOverallAnalyticsBinding
 import com.sks225.chillkar.model.EventCategory
 import com.sks225.chillkar.model.OverallAnalytics
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
+import kotlin.math.roundToInt
 
 class OverallAnalyticsFragment : Fragment() {
-
     private lateinit var binding: FragmentOverallAnalyticsBinding
+    private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentOverallAnalyticsBinding.inflate(inflater, container, false)
+        navController = findNavController()
 
-        val navController = findNavController()
-        val overallAnalytics = arguments?.let {
-            OverallAnalyticsFragmentArgs.fromBundle(it).OverallAnalytics
-        } ?: run {
-            navController.navigateUp()
-            return binding.root
-        }
+        val overallAnalytics =
+            OverallAnalyticsFragmentArgs.fromBundle(requireArguments()).OverallAnalytics
 
         binding.toolbar.setNavigationOnClickListener {
             navController.navigateUp()
         }
 
-        // Show CircularProgressIndicator values
-        val sold = overallAnalytics.ticketsSold
-        val max = overallAnalytics.maxTickets
-        val percentage = if (max == 0) 0 else (sold * 100 / max)
+        binding.progressCircular.progress =
+            overallAnalytics.ticketsSold * 100 / overallAnalytics.maxTickets
+        //binding.progressCircular.max=overallAnalytics.maxTickets
 
-        //val progressIndicator = binding.root.findViewById<CircularProgressIndicator>(R.id.frame_layout).getChildAt(1) as CircularProgressIndicator
-        binding.progressCircular.progress = percentage
+        binding.tvTickets.text =
+            "${overallAnalytics.ticketsSold} / ${overallAnalytics.maxTickets}\n Sold"
+        binding.tvSales.text = "${overallAnalytics.dailySales.values.average().toInt()}"
+        binding.tvRevenue.text = "$ ${overallAnalytics.totalRevenue}"
 
-        //val textView = binding.root.findViewById<FrameLayout>(R.id.frame_layout).getChildAt(0) as TextView
-        binding.tvTickets.text = "$sold / $max\n Sold"
-        binding.tvSales.text = "Average Sales: ${overallAnalytics.dailySales.values.average().toInt()}}"
-        binding.tvRevenue.text = "Total Revenue: ${overallAnalytics.totalRevenue}"
-
-        // Example values
-        //binding.root.findViewById<TextView>(R.id.frame_layout).rootView.findViewById<TextView>(R.id.frame_layout)
-        //binding.root.findViewById<TextView>(R.id.frame_layout).rootView.findViewById<TextView>(R.id.frame_layout)
-
-        // Setup Charts
         setupDailySalesChart(overallAnalytics.dailySales)
         setupSpinner(overallAnalytics)
         setupPieChart(overallAnalytics.salesByCategory)
@@ -77,37 +70,68 @@ class OverallAnalyticsFragment : Fragment() {
     }
 
     private fun setupDailySalesChart(dailySales: Map<String, Int>) {
-        val chart = binding.root.findViewById<LineChart>(R.id.daily_sales_chart)
+        val sortedSales = dailySales.toList().sortedBy { it.first }
 
-        val sortedSales = dailySales.toList().sortedBy { it.first }.takeLast(7)
-
-        val entries = sortedSales.mapIndexed { index, entry ->
-            Entry(index.toFloat(), entry.second.toFloat())
+        val entries = sortedSales.mapIndexed { index, pair ->
+            Entry(index.toFloat(), pair.second.toFloat())
         }
 
-        val dataSet = LineDataSet(entries, "Daily Sales").apply {
+        val minY = (sortedSales.minOfOrNull { it.second } ?: 0) - 200
+        val maxY = (sortedSales.maxOfOrNull { it.second } ?: 0) + 200
+
+        val dataSet = LineDataSet(entries, "Overall Daily Sales").apply {
             color = Color.BLUE
             valueTextSize = 12f
-            setDrawFilled(true)
-            fillColor = Color.CYAN
+            setDrawCircles(true)
+            setDrawFilled(false)
+            lineWidth = 3f
         }
 
-        chart.data = LineData(dataSet)
-        chart.description.isEnabled = false
-        chart.xAxis.apply {
-            position = XAxis.XAxisPosition.BOTTOM
-            valueFormatter = IndexAxisValueFormatter(sortedSales.map { it.first })
-            granularity = 1f
+        val calendar = Calendar.getInstance()
+        val dateFormat = SimpleDateFormat("MMMM, d", Locale.getDefault())
+        val weekDates = (0..6).map {
+            calendar.apply { add(Calendar.DAY_OF_YEAR, it) }
+            dateFormat.format(calendar.time)
         }
-        chart.axisRight.isEnabled = false
-        chart.invalidate()
+
+        binding.dailySalesChart.apply {
+            data = LineData(dataSet)
+
+            xAxis.apply {
+                valueFormatter = object : ValueFormatter() {
+                    override fun getFormattedValue(value: Float): String {
+                        val index = value.toInt()
+                        return if (index in weekDates.indices) {
+                            weekDates[index]
+                        } else {
+                            ""
+                        }
+                    }
+                }
+                granularity = 1f
+                position = XAxis.XAxisPosition.BOTTOM
+                setDrawGridLines(false)
+            }
+
+            axisLeft.apply {
+                axisMinimum = minY.toFloat()
+                axisMaximum = maxY.toFloat()
+                granularity = 50f
+            }
+            axisRight.isEnabled = false
+
+            setTouchEnabled(false)
+            setPinchZoom(false)
+            description.isEnabled = false
+            animateX(100)
+            invalidate()
+        }
     }
 
     private fun setupSpinner(overallAnalytics: OverallAnalytics) {
         val spinner = binding.root.findViewById<Spinner>(R.id.sales_spinner)
         val options = listOf("Age", "Gender")
-        val adapter =
-            ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, options)
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, options)
         spinner.adapter = adapter
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -150,25 +174,52 @@ class OverallAnalyticsFragment : Fragment() {
         chart.xAxis.apply {
             valueFormatter = IndexAxisValueFormatter(data.keys.toList())
             position = XAxis.XAxisPosition.BOTTOM
-            granularity = 1f
+            granularity = 10f
         }
         chart.axisRight.isEnabled = false
         chart.invalidate()
     }
+
 
     private fun setupPieChart(data: Map<EventCategory, Int>) {
         val chart = binding.root.findViewById<PieChart>(R.id.pie_chart)
 
         val entries = data.map { PieEntry(it.value.toFloat(), it.key.name) }
 
-        val dataSet = PieDataSet(entries, "Category Sales").apply {
+        val dataSet = PieDataSet(entries, "").apply {
             colors = ColorTemplate.COLORFUL_COLORS.toList()
+            setDrawValues(true) // ✅ Show values (percentages) on the pie chart
+            valueTextSize = 12f
+            valueFormatter = object : ValueFormatter() {
+                override fun getFormattedValue(value: Float): String {
+                    return "${(value).roundToInt()}%" // Display percentage
+                }
+            }
         }
 
         chart.data = PieData(dataSet)
+
+        // Chart Configuration
         chart.isDrawHoleEnabled = true
         chart.setUsePercentValues(true)
         chart.description.isEnabled = false
-        chart.invalidate()
+
+        // Remove category labels from the slices
+        chart.setDrawEntryLabels(false)
+
+        // Legend Configuration (shown below the chart)
+        chart.legend.apply {
+            isEnabled = true
+            verticalAlignment = Legend.LegendVerticalAlignment.BOTTOM
+            horizontalAlignment = Legend.LegendHorizontalAlignment.CENTER
+            orientation = Legend.LegendOrientation.HORIZONTAL
+            setDrawInside(false)
+            xEntrySpace = 10f
+        }
+
+        chart.invalidate() // Refresh the chart
     }
+
+
+
 }
