@@ -33,4 +33,5 @@
     <string name="vip_price">VIP: ♦%1$d</string>
     <string name="general_price">General: ♦%1$d</string>
     <string name="your_events">Your Events</string>
+    <string name="infura_api_key">dd705bdd6baa496e93d70d7826f8585c</string>
 </resources>

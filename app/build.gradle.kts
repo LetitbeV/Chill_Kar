@@ -52,7 +52,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation("androidx.datastore:datastore-preferences:1.1.4")
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("com.github.bumptech.glide:glide:4.14.2")
+    implementation("io.metamask.androidsdk:metamask-android-sdk:0.6.6")
 }
