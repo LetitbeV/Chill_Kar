@@ -15,8 +15,8 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="@string/ticket_details"
             app:navigationIcon="@drawable/baseline_arrow_back_ios_24"
+            app:title="@string/ticket_details"
             app:titleCentered="true"
             app:titleTextAppearance="@style/BoldToolbarTitle" />
 
@@ -31,7 +31,7 @@
         android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="8dp"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="0dp">
 
         <ImageView
             android:id="@+id/ticket_thumbnail"
@@ -44,13 +44,12 @@
 
     <TextView
         android:id="@+id/tv_ticket_title"
-        style="@style/TextAppearance.Material3.HeadlineLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginBottom="12dp"
+        android:fontFamily="@font/nunito_bold"
+        android:padding="10dp"
         android:textAlignment="center"
-        android:textStyle="bold"
+        android:textSize="20sp"
         tools:text="Very Large Ticket Title" />
 
     <RadioGroup
@@ -70,7 +69,9 @@
                 android:id="@+id/btn_general"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/nunito_regular"
+                android:textSize="16sp"
                 tools:text="General: ♦100" />
         </com.google.android.material.card.MaterialCardView>
 
@@ -85,7 +86,9 @@
                 android:id="@+id/btn_vip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/nunito_regular"
+                android:textSize="16sp"
                 tools:text="VIP: ♦100" />
         </com.google.android.material.card.MaterialCardView>
     </RadioGroup>
@@ -96,8 +99,10 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"
         android:drawablePadding="16dp"
+        android:fontFamily="@font/nunito_regular"
         android:gravity="center_vertical"
-        android:textSize="24sp"
+        android:padding="8dp"
+        android:textSize="16sp"
         app:drawableStartCompat="@drawable/baseline_location_pin_24"
         tools:text="City Name, State" />
 
@@ -107,8 +112,10 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"
         android:drawablePadding="16dp"
+        android:fontFamily="@font/nunito_regular"
         android:gravity="center_vertical"
-        android:textSize="24sp"
+        android:padding="8dp"
+        android:textSize="16sp"
         app:drawableStartCompat="@drawable/baseline_calendar_month_24"
         tools:text="April 3, 2025 10:00 PM" />
 
@@ -117,9 +124,9 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/nunito_bold"
         android:text="@string/description"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textSize="20sp" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -130,9 +137,10 @@
             android:id="@+id/tv_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_light"
             android:lineSpacingExtra="4dp"
             android:padding="16dp"
-            android:textSize="16sp"
+            android:textSize="12sp"
             tools:text="This is a very large text that nobody cares about. This is a very large text that nobody cares about. This is a very large text that nobody cares about. This is a very large text that nobody cares about. This is a very large text that nobody cares about." />
     </ScrollView>
 
@@ -151,6 +159,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
             android:layout_weight="1"
+            android:backgroundTint="@color/blue"
             android:text="@string/buy"
             android:textSize="24sp"
             app:cornerRadius="8dp" />
@@ -162,7 +171,10 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
             android:layout_weight="1"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/nunito_bold"
             android:text="@string/sell"
+            android:textColor="@color/blue"
             android:textSize="24sp"
             app:cornerRadius="8dp" />
     </LinearLayout>

@@ -18,9 +18,9 @@
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
-                android:background="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 app:navigationIcon="@drawable/baseline_arrow_back_ios_24"
                 app:title="Event Analytics" />
         </com.google.android.material.appbar.AppBarLayout>
@@ -34,8 +34,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:padding="10dp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:padding="10dp">
 
                 <FrameLayout
                     android:id="@+id/frame_layout"
@@ -66,7 +66,9 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:progress="80"
+                        app:indicatorColor="#0000FF"
                         app:indicatorSize="128dp"
+                        app:trackColor="#08000000"
                         app:trackThickness="8dp" />
                 </FrameLayout>
 
@@ -82,19 +84,20 @@
                         android:id="@+id/tv_event_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="2dp"
                         android:ellipsize="end"
                         android:fontFamily="@font/nunito_bold"
+                        android:padding="2dp"
                         android:text="\t\tEvent Name"
-                        android:textSize="16sp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_event_time"
                         android:layout_width="wrap_content"
-                        android:fontFamily="@font/nunito_regular"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/baseline_access_time_filled_24"
+                        android:drawablePadding="8dp"
+                        android:fontFamily="@font/nunito_regular"
                         android:padding="2dp"
                         android:text="5:00 PM"
                         android:textSize="12sp" />
@@ -104,8 +107,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/baseline_calendar_month_24"
-                        android:padding="2dp"
+                        android:drawablePadding="8dp"
                         android:fontFamily="@font/nunito_regular"
+                        android:padding="2dp"
                         android:text="April 5, 2025"
                         android:textSize="12sp" />
 
@@ -114,8 +118,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/baseline_location_pin_24"
-                        android:padding="2dp"
+                        android:drawablePadding="8dp"
                         android:fontFamily="@font/nunito_regular"
+                        android:padding="2dp"
                         android:text="New Delhi, India"
                         android:textSize="12sp" />
 
@@ -205,9 +210,9 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:fontFamily="@font/nunito_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_bold"
                     android:padding="10dp"
                     android:text="Daily Sales"
                     android:textSize="20sp"
@@ -239,6 +244,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito_bold"
                         android:padding="10dp"
                         android:text="Sales by"
                         android:textSize="20sp"

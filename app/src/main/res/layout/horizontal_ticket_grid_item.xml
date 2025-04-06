@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
-    android:elevation="12dp"
+    android:elevation="2dp"
     app:cardCornerRadius="8dp">
 
     <LinearLayout
@@ -26,17 +26,20 @@
             android:id="@+id/ticket_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/nunito_bold"
+            android:maxLines="1"
             android:textAlignment="center"
-            android:textSize="20sp"
-            android:textStyle="bold"
+            android:textSize="16sp"
             tools:text="Ticket Title" />
 
         <TextView
             android:id="@+id/ticket_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_light"
             android:textAlignment="center"
-            android:textSize="16sp"
+            android:textSize="12sp"
             tools:text="April 5, 2025" />
     </LinearLayout>
 

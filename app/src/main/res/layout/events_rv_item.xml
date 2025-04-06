@@ -63,6 +63,7 @@
             android:layout_height="4dp"
             android:paddingHorizontal="10dp"
             android:progress="60"
+            app:indicatorColor="#0000FF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_event_poster"
             app:layout_constraintTop_toBottomOf="@id/tv_ticekts_sold"

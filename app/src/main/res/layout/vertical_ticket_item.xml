@@ -4,8 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="12dp">
+    android:layout_marginHorizontal="8dp"
+    app:cardElevation="0dp"
+    android:layout_marginVertical="4dp"
+    app:cardCornerRadius="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,23 +31,28 @@
                 android:id="@+id/ticket_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textStyle="bold"
+                android:textSize="16sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:fontFamily="@font/nunito_bold"
                 tools:text="Ticket Title" />
 
             <TextView
                 android:id="@+id/ticket_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:fontFamily="@font/nunito_bold"
+                android:textSize="16sp"
                 tools:text="@string/ticket_price" />
 
             <TextView
                 android:id="@+id/ticket_location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:drawablePadding="4dp"
-                android:textSize="20sp"
+                android:textSize="12sp"
+                android:fontFamily="@font/nunito_light"
                 app:drawableStartCompat="@drawable/baseline_location_pin_24"
                 tools:text="City Name, State" />
 
@@ -54,7 +61,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="4dp"
-                android:textSize="20sp"
+                android:textSize="12sp"
+                android:gravity="center_vertical"
+                android:fontFamily="@font/nunito_light"
                 app:drawableStartCompat="@drawable/baseline_calendar_month_24"
                 tools:text="April 3, 2025, 10:00 PM" />
         </LinearLayout>

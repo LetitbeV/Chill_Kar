@@ -44,8 +44,9 @@
                     android:layout_height="wrap_content"
                     android:drawablePadding="8dp"
                     android:padding="8dp"
+                    android:fontFamily="@font/nunito_light"
                     android:text="@string/search_your_events_here"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     app:drawableLeftCompat="@drawable/baseline_search_24" />
             </com.google.android.material.card.MaterialCardView>
 
@@ -69,7 +70,8 @@
                         android:padding="4dp"
                         android:text="@string/all_events"
                         android:textAlignment="center"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/nunito_regular"
                         app:drawableTint="@android:color/holo_green_dark"
                         app:drawableTopCompat="@drawable/ic_event" />
                 </com.google.android.material.card.MaterialCardView>
@@ -89,7 +91,8 @@
                         android:padding="4dp"
                         android:text="@string/sports"
                         android:textAlignment="center"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/nunito_regular"
                         app:drawableTint="@android:color/holo_orange_dark"
                         app:drawableTopCompat="@drawable/ic_sports" />
                 </com.google.android.material.card.MaterialCardView>
@@ -109,7 +112,8 @@
                         android:padding="4dp"
                         android:text="@string/movies"
                         android:textAlignment="center"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/nunito_regular"
                         app:drawableTint="@android:color/holo_purple"
                         app:drawableTopCompat="@drawable/ic_movie" />
                 </com.google.android.material.card.MaterialCardView>
@@ -129,19 +133,21 @@
                         android:padding="4dp"
                         android:text="@string/concerts"
                         android:textAlignment="center"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/nunito_regular"
                         app:drawableTint="@android:color/holo_red_light"
                         app:drawableTopCompat="@drawable/ic_concert" />
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
 
             <TextView
-                style="@style/TextAppearance.Material3.HeadlineMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:labelFor="@+id/rv_recommended"
-                android:paddingHorizontal="16dp"
+                android:fontFamily="@font/nunito_bold"
+                android:textSize="20sp"
+                android:padding="10dp"
                 android:text="@string/recommended"
                 android:textStyle="bold" />
 
@@ -154,7 +160,9 @@
                 android:scrollbars="horizontal" />
 
             <TextView
-                style="@style/TextAppearance.Material3.HeadlineMedium"
+                android:fontFamily="@font/nunito_bold"
+                android:textSize="20sp"
+                android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -172,7 +180,9 @@
                 android:scrollbars="horizontal" />
 
             <TextView
-                style="@style/TextAppearance.Material3.HeadlineMedium"
+                android:fontFamily="@font/nunito_bold"
+                android:textSize="20sp"
+                android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"

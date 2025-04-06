@@ -185,7 +185,7 @@ class EventAnalyticsFragment : Fragment() {
         }
 
         val dataSet = BarDataSet(entries, "$type-wise Sales")
-        dataSet.color = resources.getColor(R.color.black, null)
+        dataSet.color = resources.getColor(R.color.blue, null)
         dataSet.valueTextSize = 12f
 
         val barData = BarData(dataSet)

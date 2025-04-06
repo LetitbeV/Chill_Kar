@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="4dp">
+        android:padding="0dp">
 
         <ImageView
             android:id="@+id/ticket_thumbnail"
@@ -22,20 +22,24 @@
             android:src="@mipmap/ic_launcher" />
 
         <TextView
+            android:padding="4dp"
             android:id="@+id/ticket_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:textSize="20sp"
-            android:textStyle="bold"
+            android:textSize="16sp"
+            android:fontFamily="@font/nunito_bold"
             tools:text="Ticket Title" />
 
         <TextView
+            android:paddingBottom="8dp"
+            android:paddingHorizontal="8dp"
             android:id="@+id/ticket_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:textSize="16sp"
+            android:textSize="12sp"
+            android:fontFamily="@font/nunito_light"
             tools:text="April 5, 2025" />
     </LinearLayout>
 

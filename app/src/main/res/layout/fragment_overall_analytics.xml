@@ -65,6 +65,7 @@
                         android:progress="80"
                         app:indicatorSize="128dp"
                         app:trackColor="#08000000"
+                        app:indicatorColor="#0000DD"
                         app:trackCornerRadius="10dp"
                         app:trackThickness="8dp" />
                 </FrameLayout>
