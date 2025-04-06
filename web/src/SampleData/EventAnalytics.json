@@ -19,11 +19,11 @@
     ],
     
     "ageDistribution": [
-      { "name": "18-24", "value": 2800 },
-      { "name": "25-34", "value": 4200 },
-      { "name": "35-44", "value": 3400 },
-      { "name": "45-54", "value": 1900 },
-      { "name": "55+", "value": 1200 }
+      { "name": "18", "value": 2800 },
+      { "name": "25", "value": 4200 },
+      { "name": "35", "value": 3400 },
+      { "name": "45", "value": 1900 },
+      { "name": "55", "value": 1200 }
     ],
     
     "genderDistribution": [
