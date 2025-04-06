@@ -19,7 +19,7 @@ const Layout = () => {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
-          <Route path="/events/:owner/:eventTime" element={<EventDetailsPage />} />
+          <Route path="/events/:owner/:eventId" element={<EventDetailsPage />} />
           <Route path="/Movies" element={<ListEvents eventType={`Movies`} />} />
           <Route path="/Sports" element={<ListEvents eventType={`Sports`} />} />
           <Route path="/Concerts" element={<ListEvents eventType={`Concert`} />} />

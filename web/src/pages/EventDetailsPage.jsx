@@ -4,7 +4,7 @@ import EventDetails from "../components/EventDetails";
 import getDataByAddr from "../contractLogic/getDataByAddr";
 
 const EventDetailsPage = () => {
-  const { owner, eventTime } = useParams();
+  const { owner, eventId } = useParams();
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -16,7 +16,7 @@ const EventDetailsPage = () => {
         let bandData = await getDataByAddr(owner);
 
         const matchedEvent = bandData.events.find(
-          (event) => event.eventTime == eventTime
+          (event) => event.eventId == eventId
         );
         console.log("matched: ", matchedEvent);
         setEvent(matchedEvent);
@@ -27,10 +27,10 @@ const EventDetailsPage = () => {
       }
     };
 
-    if (eventTime) {
+    if (eventId) {
       fetchEventData();
     }
-  }, [eventTime, owner]);
+  }, [eventId, owner]);
 
   if (loading) {
     return (

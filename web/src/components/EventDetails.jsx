@@ -1,28 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import { Star, Share, X } from 'lucide-react';
-import { getImageFromPinata } from '../contractLogic/pinataUtils';
+import React, { useState, useEffect } from "react";
+import { Star, Share, X } from "lucide-react";
+import { getImageFromPinata } from "../contractLogic/pinataUtils";
 import defaultImage from "../../public/images/anime/anime1.jpeg";
+import NFTCard from "./NFTCard";
+import nft from "../SampleData/NFTData.json";
+import getEventsByEventId from "../contractLogic/getEventsByEventId";
 
 const EventDetails = ({ movie }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showBookingModal, setShowBookingModal] = useState(false);
-  const [image,setImage] =useState(defaultImage);
+  const [image, setImage] = useState(defaultImage);
+  const [event, setEvent] = useState(null);
   const [bookingData, setBookingData] = useState({
-    age: '',
-    gender: '',
-    region: '',
-    eventCategory: movie?.eventType || 'Other Events',
-    timestamp: new Date().toISOString()
+    age: "",
+    gender: "",
+    region: "",
+    eventCategory: movie?.eventType || "Other Events",
+    timestamp: new Date().toISOString(),
   });
 
-  const getImage = async (imageCID) => {
+  const getData = async (imageCID, eventId) => {
     let result = await getImageFromPinata(imageCID);
     if (!result) {
       console.log("no image");
       return null;
     }
     setImage(result);
-  }
+
+    result = await getEventsByEventId(eventId);
+    setEvent(result[0]);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,22 +38,29 @@ const EventDetails = ({ movie }) => {
       setIsScrolled(scrollPosition > 400);
     };
 
-    getImage(movie.poster);
+    getData(movie.poster, movie.eventId);
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [movie.eventId]);
 
   if (!movie) return null;
 
   const handleBookingSubmit = (e) => {
     e.preventDefault();
     // Handle form submission here
-    console.log('Booking data:', bookingData);
+    console.log("Booking data:", bookingData);
     setShowBookingModal(false);
   };
 
-  const regions = ['Mumbai', 'Delhi', 'Bangalore', 'Hyderabad', 'Chennai', 'Kolkata'];
+  const regions = [
+    "Mumbai",
+    "Delhi",
+    "Bangalore",
+    "Hyderabad",
+    "Chennai",
+    "Kolkata",
+  ];
 
   return (
     <div className="bg-gray-100 min-h-screen">
@@ -67,21 +81,32 @@ const EventDetails = ({ movie }) => {
               <form onSubmit={handleBookingSubmit}>
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium mb-1">Age</label>
+                    <label className="block text-sm font-medium mb-1">
+                      Age
+                    </label>
                     <input
                       type="number"
                       className="w-full p-2 border rounded"
                       value={bookingData.age}
-                      onChange={(e) => setBookingData({...bookingData, age: e.target.value})}
+                      onChange={(e) =>
+                        setBookingData({ ...bookingData, age: e.target.value })
+                      }
                       required
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1">Gender</label>
+                    <label className="block text-sm font-medium mb-1">
+                      Gender
+                    </label>
                     <select
                       className="w-full p-2 border rounded"
                       value={bookingData.gender}
-                      onChange={(e) => setBookingData({...bookingData, gender: e.target.value})}
+                      onChange={(e) =>
+                        setBookingData({
+                          ...bookingData,
+                          gender: e.target.value,
+                        })
+                      }
                       required
                     >
                       <option value="">Select gender</option>
@@ -90,16 +115,25 @@ const EventDetails = ({ movie }) => {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1">Region</label>
+                    <label className="block text-sm font-medium mb-1">
+                      Region
+                    </label>
                     <select
                       className="w-full p-2 border rounded"
                       value={bookingData.region}
-                      onChange={(e) => setBookingData({...bookingData, region: e.target.value})}
+                      onChange={(e) =>
+                        setBookingData({
+                          ...bookingData,
+                          region: e.target.value,
+                        })
+                      }
                       required
                     >
                       <option value="">Select region</option>
-                      {regions.map(region => (
-                        <option key={region} value={region}>{region}</option>
+                      {regions.map((region) => (
+                        <option key={region} value={region}>
+                          {region}
+                        </option>
                       ))}
                     </select>
                   </div>
@@ -115,12 +149,11 @@ const EventDetails = ({ movie }) => {
           </div>
         </>
       )}
-
       {/* Fixed Book Tickets Button (appears on scroll) */}
       {isScrolled && (
         <div className="fixed top-0 left-0 right-0 bg-white shadow-md z-50 py-3 px-4 flex justify-between items-center">
           <h2 className="text-lg font-bold">{movie.title}</h2>
-          <button 
+          <button
             onClick={() => setShowBookingModal(true)}
             className="bg-yellow-500 hover:bg-yellow-600 text-black cursor-pointer font-bold py-2 px-6 rounded-md"
           >
@@ -128,27 +161,23 @@ const EventDetails = ({ movie }) => {
           </button>
         </div>
       )}
-``
+      ``
       {/* Hero Section with Background Image */}
       <div
         className="relative w-full bg-cover bg-center"
         style={{
           backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.8) 20%, transparent), url(${image})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          height: 'auto',
-          minHeight: '380px'
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          height: "auto",
+          minHeight: "380px",
         }}
       >
         <div className="container mx-auto px-4 py-8 h-full flex flex-col md:flex-row items-center md:items-end">
           {/* Movie Poster */}
           <div className="hidden md:block md:w-64 relative mr-8 mb-6">
             <div className="rounded-lg overflow-hidden shadow-xl">
-              <img
-                src={image}
-                alt={movie.title}
-                className="w-full h-auto"
-              />
+              <img src={image} alt={movie.title} className="w-full h-auto" />
             </div>
           </div>
 
@@ -164,15 +193,15 @@ const EventDetails = ({ movie }) => {
             </div>
             {/* Movie Details */}
             <div className="flex flex-wrap items-center text-sm text-gray-300 mb-8">
-              <span>{movie.genres && movie.genres.join(', ')}</span>
+              <span>{movie.genres && movie.genres.join(", ")}</span>
               <span className="mx-2">•</span>
-              <span>{movie.eventTime}</span>
+              <span>{event && event.args[7]}</span>
               <span className="mx-2">•</span>
               <span>{movie.venue}</span>
             </div>
 
             {/* Book Tickets Button */}
-            <button 
+            <button
               onClick={() => setShowBookingModal(true)}
               className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-md cursor-pointer"
             >
@@ -181,16 +210,38 @@ const EventDetails = ({ movie }) => {
           </div>
         </div>
       </div>
-
       {/* About the movie section */}
       <div className="container mx-auto px-4 py-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">About the movie</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">
+          About the movie
+        </h2>
         <p className="text-gray-700 leading-relaxed mb-8">
           {movie.description}
         </p>
 
+        <h2 className="text-3xl font-bold mb-4 underline decoration-yellow-500 ">
+          Event NFTs
+        </h2>
+        {event && (
+          <div className="NFTcards flex min-w-7/12 justify-around">
+            <NFTCard
+              data={nft.nfts[2]}
+              price={event.args.vipTicketPrice.toString()}
+              total={event.args.vipMaxTickets.toString()}
+              image={image}
+              isVIP={true}
+              tokenIds={event.args.tokenIds}
+            />
+            <NFTCard
+              data={nft.nfts[4]}
+              image={image}
+              price={event.args.generalTicketPrice.toString()}
+              total={event.args.generalMaxTickets.toString()}
+              tokenIds={event.args.tokenIds}
+            />
+          </div>
+        )}
       </div>
-
     </div>
   );
 };

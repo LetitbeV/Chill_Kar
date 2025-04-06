@@ -24,7 +24,7 @@ const getEvents = async () => {
         const e = bandData.events;
 
         for (let j = 0; j < e.length; j++) {
-          if (e[j].eventTime == events[i].args.eventStartTime) {
+          if (e[j].eventId == events[i].args.eventId) {
             events[i].CID = e[j].poster;
           }
         }

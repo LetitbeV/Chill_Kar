@@ -60,7 +60,7 @@ const PostEvent = () => {
       "Hip Hop",
       "Folk",
     ],
-    Other: [
+    Others: [
       "Exhibition",
       "Conference",
       "Workshop",

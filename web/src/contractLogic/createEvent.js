@@ -21,6 +21,12 @@ const createEvent = async (eventData) => {
         method: "eth_requestAccounts",
       });
 
+      let eventId = await contract.totalEvents();
+      console.log("eventId: ", eventId);
+      eventId.toString();
+      eventId++;
+      console.log("event id: ", eventId);
+
       creatorAddr = creatorAddr[0];
 
       const {
@@ -44,8 +50,8 @@ const createEvent = async (eventData) => {
       const sellTime = Math.floor(new Date(sellStartTime).getTime() / 1000);
 
       const metaData = {
+        eventId,
         title,
-        eventTime,
         poster,
         eventType,
         genres,

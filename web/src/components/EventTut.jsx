@@ -10,7 +10,7 @@ const EventTut = ({ movie }) => {
   const [movieData, setMovieData] = useState(null);
   const navigate = useNavigate();
   const handleCardClick = () => {
-    navigate(`/events/${movie.args[1]}/${movie.args[7]}`);
+    navigate(`/events/${movie.args[1]}/${movie.args.eventId}`);
   };
 
   const getData = async (imageCID, address) => {
@@ -23,7 +23,7 @@ const EventTut = ({ movie }) => {
 
     const bandData = await getDataByAddr(address);
     const matchedEvent = bandData.events.find(
-      (event) => event.eventTime === movie.args[7]
+      (event) => event.eventId == movie.args.eventId.toString()
     );
     setMovieData(matchedEvent);
   };
