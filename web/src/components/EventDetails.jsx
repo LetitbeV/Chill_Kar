@@ -5,19 +5,30 @@ import defaultImage from "../../public/images/anime/anime1.jpeg";
 import NFTCard from "./NFTCard";
 import nft from "../SampleData/NFTData.json";
 import getEventsByEventId from "../contractLogic/getEventsByEventId";
+import getEventOnChain from "../contractLogic/getEventsOnChain";
+import { buyTicket } from "../contractLogic/buyTicket";
 
 const EventDetails = ({ movie }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showBookingModal, setShowBookingModal] = useState(false);
   const [image, setImage] = useState(defaultImage);
   const [event, setEvent] = useState(null);
+  const [eventOnChain, setEventOnChain] = useState([]);
   const [bookingData, setBookingData] = useState({
     age: "",
     gender: "",
     region: "",
+    type: "",
     eventCategory: movie?.eventType || "Other Events",
     timestamp: new Date().toISOString(),
   });
+
+  function convertEpochToIST(epoch) {
+    const date = new Date(epoch * 1000); // Epoch is in seconds, convert to ms
+    const istOffset = 5.5 * 60; // IST is UTC + 5:30, in minutes
+    const localDate = new Date(date.getTime() + istOffset * 60 * 1000);
+    return localDate.toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
+  }
 
   const getData = async (imageCID, eventId) => {
     let result = await getImageFromPinata(imageCID);
@@ -28,6 +39,10 @@ const EventDetails = ({ movie }) => {
     setImage(result);
 
     result = await getEventsByEventId(eventId);
+    let event = await getEventOnChain(eventId);
+    console.log("eventOnChain: ", event);
+    setEventOnChain(event);
+    console.log("event: ", result[0]);
     setEvent(result[0]);
   };
 
@@ -44,12 +59,51 @@ const EventDetails = ({ movie }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [movie.eventId]);
 
-  if (!movie) return null;
-
-  const handleBookingSubmit = (e) => {
+  const handleBookingSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here
+
+    const type = bookingData.type.toLowerCase();
+
+    if (!event || !event.args || !eventOnChain) {
+      console.error("Event or eventOnChain data not loaded.");
+      return;
+    }
+
+    let tokenId = null;
+    let price;
+
+    if (type === "vip") {
+      const sold = Number(eventOnChain.vipTicketSold);
+      const vipTokenIds = event.args.tokenIds.slice(
+        0,
+        Number(event.args.vipMaxTickets)
+      );
+      tokenId = vipTokenIds[sold];
+      price = event.args.vipTicketPrice.toString();
+    } else if (type === "general") {
+      const sold = Number(eventOnChain.generalTicketSold);
+      const generalTokenIds = event.args.tokenIds.slice(
+        Number(event.args.vipMaxTickets)
+      );
+      tokenId = generalTokenIds[sold];
+      price = event.args.generalTicketPrice.toString();
+    } else {
+      console.error("Invalid ticket type selected");
+      return;
+    }
+
+    if (tokenId === undefined) {
+      console.error("No available token ID for this ticket type");
+      return;
+    }
+
     console.log("Booking data:", bookingData);
+    console.log("Token ID to buy:", tokenId.toString());
+    console.log("price: ", price);
+    const tx = await buyTicket(tokenId.toString(), price);
+
+    console.log("Tx hash: ", tx.hash);
+
     setShowBookingModal(false);
   };
 
@@ -137,6 +191,26 @@ const EventDetails = ({ movie }) => {
                       ))}
                     </select>
                   </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">
+                      Type
+                    </label>
+                    <select
+                      className="w-full p-2 border rounded"
+                      value={bookingData.type}
+                      onChange={(e) =>
+                        setBookingData({
+                          ...bookingData,
+                          type: e.target.value,
+                        })
+                      }
+                      required
+                    >
+                      <option value="">Select Type of Ticket</option>
+                      <option value="vip">VIP</option>
+                      <option value="general">General</option>
+                    </select>
+                  </div>
                   <button
                     type="submit"
                     className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded"
@@ -195,7 +269,7 @@ const EventDetails = ({ movie }) => {
             <div className="flex flex-wrap items-center text-sm text-gray-300 mb-8">
               <span>{movie.genres && movie.genres.join(", ")}</span>
               <span className="mx-2">•</span>
-              <span>{event && event.args[7]}</span>
+              <span>{event && convertEpochToIST(event.args[7])}</span>
               <span className="mx-2">•</span>
               <span>{movie.venue}</span>
             </div>
@@ -230,14 +304,21 @@ const EventDetails = ({ movie }) => {
               total={event.args.vipMaxTickets.toString()}
               image={image}
               isVIP={true}
-              tokenIds={event.args.tokenIds}
+              tokenIds={event.args.tokenIds.slice(
+                0,
+                Number(event.args.vipMaxTickets)
+              )}
+              sold={eventOnChain.generalTicketSold.toString()}
             />
             <NFTCard
               data={nft.nfts[4]}
               image={image}
               price={event.args.generalTicketPrice.toString()}
               total={event.args.generalMaxTickets.toString()}
-              tokenIds={event.args.tokenIds}
+              tokenIds={event.args.tokenIds.slice(
+                Number(event.args.vipMaxTickets)
+              )}
+              sold={eventOnChain.vipTicketSold.toString()}
             />
           </div>
         )}

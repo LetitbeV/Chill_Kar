@@ -1,10 +1,10 @@
-import React from 'react'
-import nft from '../SampleData/NFTData.json'
+import React from "react";
+import nft from "../SampleData/NFTData.json";
 
-const NFTCard = ({ data, isVIP, image, price, total, tokenIds }) => {
-    const idx = Math.floor(Math.random()*9);
-    if(!data) data = nft.nfts[idx];
-    
+const NFTCard = ({ data, isVIP, image, price, total, tokenIds, sold }) => {
+  const idx = Math.floor(Math.random() * 9);
+  if (!data) data = nft.nfts[idx];
+
   return (
     <div
       className={`max-w-sm rounded-xl overflow-hidden transition-shadow duration-300
@@ -57,7 +57,7 @@ const NFTCard = ({ data, isVIP, image, price, total, tokenIds }) => {
           <span
             className={`text-sm ${isVIP ? "text-amber-700" : "text-gray-600"}`}
           >
-            {total} total tickets
+            {total} total tickets <br /> {total - sold} tickets remaining
           </span>
         </div>
 
@@ -65,19 +65,20 @@ const NFTCard = ({ data, isVIP, image, price, total, tokenIds }) => {
         <div
           className={`rounded-md p-2 ${isVIP ? "bg-amber-50" : "bg-gray-100"}`}
         >
-          {tokenIds.map((token) => (
+          {tokenIds.map((token, index) => (
             <p
+              key={index}
               className={`text-xs font-mono break-all ${
                 isVIP ? "text-amber-700" : "text-gray-600"
               }`}
             >
-              ID: {token.toString().slice(0, 16)}...
+              ID: {token.toString().slice(0, 28)}...
             </p>
           ))}
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default NFTCard
+export default NFTCard;
