@@ -75,7 +75,6 @@ const EventDetails = ({ movie }) => {
     if (type === "vip") {
       const sold = Number(eventOnChain.vipTicketSold);
       const vipTokenIds = event.args.tokenIds.slice(
-        0,
         Number(event.args.vipMaxTickets)
       );
       tokenId = vipTokenIds[sold];
@@ -83,7 +82,8 @@ const EventDetails = ({ movie }) => {
     } else if (type === "general") {
       const sold = Number(eventOnChain.generalTicketSold);
       const generalTokenIds = event.args.tokenIds.slice(
-        Number(event.args.vipMaxTickets)
+        0,
+        Number(event.args.generalMaxTickets)
       );
       tokenId = generalTokenIds[sold];
       price = event.args.generalTicketPrice.toString();
@@ -305,10 +305,9 @@ const EventDetails = ({ movie }) => {
               image={image}
               isVIP={true}
               tokenIds={event.args.tokenIds.slice(
-                0,
-                Number(event.args.vipMaxTickets)
+                Number(event.args.generalMaxTickets)
               )}
-              sold={eventOnChain.generalTicketSold.toString()}
+              sold={eventOnChain.vipTicketSold.toString()}
             />
             <NFTCard
               data={nft.nfts[4]}
@@ -316,9 +315,10 @@ const EventDetails = ({ movie }) => {
               price={event.args.generalTicketPrice.toString()}
               total={event.args.generalMaxTickets.toString()}
               tokenIds={event.args.tokenIds.slice(
-                Number(event.args.vipMaxTickets)
+                0,
+                Number(event.args.generalMaxTickets)
               )}
-              sold={eventOnChain.vipTicketSold.toString()}
+              sold={eventOnChain.generalTicketSold.toString()}
             />
           </div>
         )}

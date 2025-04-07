@@ -9,6 +9,7 @@ import ListEvents from "./pages/ListEvents.jsx";
 import PostEvent from './pages/PostEvent.jsx'
 import EventsAnalyticsPage from "./pages/EventAnalyticsPage.jsx";
 import EventDetailsPage from "./pages/EventDetailsPage.jsx";
+import User from "./pages/User.jsx";
 
 const Layout = () => {
   return (
@@ -26,6 +27,7 @@ const Layout = () => {
           <Route path="/Events" element={<ListEvents />} />
           <Route path="/events-analytics" element={<EventsAnalyticsPage />} />
           <Route path="/PostEvent" element={<PostEvent />} />
+          <Route path="/User" element={<User />} />
         </Routes>
       <Footer />
       </main>
